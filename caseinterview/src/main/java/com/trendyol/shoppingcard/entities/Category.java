@@ -6,8 +6,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.util.CollectionUtils;
 
 import com.trendyol.shoppingcard.dto.CategoryDTO;
@@ -27,6 +31,12 @@ public class Category extends BaseEntity<Long>{
 	private String title;
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 	private Category parentCategory;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "campaign")
+	private Campaign campaign;
+	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@Fetch(value = FetchMode.SUBSELECT)
+	private List<Product> productList;
 	
 	public static Category toModel(CategoryDTO dto) {
 		Category model = new Category();
@@ -35,6 +45,8 @@ public class Category extends BaseEntity<Long>{
 		if(dto.getParentCategory() != null) {
 			model.setParentCategory(toModel(dto.getParentCategory()));
 		}
+		model.setCreateDate(dto.getCreateDate());
+		model.setModifiedDate(dto.getModifiedDate());
 		return model;
 	}
 	
@@ -48,6 +60,8 @@ public class Category extends BaseEntity<Long>{
 				if(dto.getParentCategory() != null) {
 					model.setParentCategory(toModel(dto.getParentCategory()));
 				}
+				model.setCreateDate(dto.getCreateDate());
+				model.setModifiedDate(dto.getModifiedDate());
 				modelList.add(model);
 			}
 		}
@@ -61,6 +75,9 @@ public class Category extends BaseEntity<Long>{
 		if(model.getParentCategory() != null) {
 			dto.setParentCategory(toDTO(model.getParentCategory()));
 		}
+		dto.setCreateDate(model.getCreateDate());
+		dto.setModifiedDate(model.getModifiedDate());
+		dto.setProductDTOList(Product.toDTOList(model.getProductList()));
 		return dto;
 	}
 	
@@ -74,6 +91,9 @@ public class Category extends BaseEntity<Long>{
 				if(model.getParentCategory() != null) {
 					dto.setParentCategory(toDTO(model.getParentCategory()));
 				}
+				dto.setCreateDate(model.getCreateDate());
+				dto.setModifiedDate(model.getModifiedDate());
+				dto.setProductDTOList(Product.toDTOList(model.getProductList()));
 				dtoList.add(dto);
 			}
 		}

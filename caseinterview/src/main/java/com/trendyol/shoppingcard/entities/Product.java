@@ -1,11 +1,15 @@
 package com.trendyol.shoppingcard.entities;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.util.CollectionUtils;
 
 import com.trendyol.shoppingcard.dto.ProductDTO;
 
@@ -24,7 +28,8 @@ public class Product extends BaseEntity<Long>{
 	private String title;
 	private BigDecimal amount;
 	private String currencyCode;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category")
     private Category category;
 
 	public static Product toModel(ProductDTO dto) {
@@ -34,16 +39,10 @@ public class Product extends BaseEntity<Long>{
 		model.setCurrencyCode(dto.getCurrencyCode());
 		model.setTitle(dto.getTitle());
 		model.setId(dto.getId());
+		model.setCreateDate(dto.getCreateDate());
+		model.setModifiedDate(dto.getModifiedDate());
 		return model;
 	}
-	
-//	public static Product toUpdateModel(Product model, ProductDTO dto) {
-//		model.setAmount(dto.getAmount() != null ? dto.getAmount() : model.getAmount());
-//		model.setCategory(dto.getCategory() != null ? Category.toModel(dto.getCategory()) : model.getCategory());
-//		model.setCurrencyCode(dto.getCurrencyCode() != null ? dto.getCurrencyCode() : model.getCurrencyCode());
-//		model.setTitle(dto.getTitle() != null ? dto.getCurrencyCode() : model.getCurrencyCode());
-//		return model;
-//	}
 	
 	public static ProductDTO toDTO(Product model) {
 		ProductDTO dto = new ProductDTO();
@@ -52,7 +51,27 @@ public class Product extends BaseEntity<Long>{
 		dto.setCategory(Category.toDTO(model.getCategory()));
 		dto.setCurrencyCode(model.getCurrencyCode());
 		dto.setTitle(model.getTitle());
+		dto.setCreateDate(model.getCreateDate());
+		dto.setModifiedDate(model.getModifiedDate());
 		return dto;
+	}
+	
+	public static List<ProductDTO> toDTOList (List<Product> modelList) {
+		List<ProductDTO> dtoList = new ArrayList<ProductDTO>();
+		if(!CollectionUtils.isEmpty(modelList)) {
+			for (Product model : modelList) {
+				ProductDTO dto = new ProductDTO();
+				dto.setId(model.getId());
+				dto.setAmount(model.getAmount());
+				dto.setCategory(Category.toDTO(model.getCategory()));
+				dto.setCurrencyCode(model.getCurrencyCode());
+				dto.setTitle(model.getTitle());
+				dto.setCreateDate(model.getCreateDate());
+				dto.setModifiedDate(model.getModifiedDate());
+				dtoList.add(dto);
+			}
+		}
+		return dtoList;
 	}
 
 }

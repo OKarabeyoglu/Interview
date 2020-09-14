@@ -1,5 +1,7 @@
 package com.trendyol.shoppingcard.dto;
 
+import java.time.LocalDate;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +12,7 @@ import lombok.Setter;
 public class BaseDTO {
 	
 	private Long id;
-	private Long version;
+	private LocalDate createDate;
+	private LocalDate modifiedDate;
 
 }

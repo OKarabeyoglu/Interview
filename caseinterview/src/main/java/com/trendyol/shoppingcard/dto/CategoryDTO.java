@@ -18,4 +18,7 @@ public class CategoryDTO extends BaseDTO {
 	private CategoryDTO parentCategory;
 	@ApiModelProperty(value = "campaignDTOList", dataType = "List<CampaignDTO>")
 	private List<CampaignDTO> campaignDTOList;
+	@ApiModelProperty(value = "productDTOList", dataType = "List<ProductDTO>")
+	private List<ProductDTO> productDTOList;
+	
 }
