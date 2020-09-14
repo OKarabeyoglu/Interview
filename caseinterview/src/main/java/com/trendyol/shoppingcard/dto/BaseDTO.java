@@ -1,8 +1,12 @@
 package com.trendyol.shoppingcard.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class BaseDTO {
 	
 	private Long id;

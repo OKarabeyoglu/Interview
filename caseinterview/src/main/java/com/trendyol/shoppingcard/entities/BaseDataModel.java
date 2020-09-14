@@ -14,14 +14,21 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseDataModel<T> implements Serializable {
 
-    @CreatedDate
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 

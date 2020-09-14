@@ -2,10 +2,12 @@ package com.trendyol.shoppingcard.response;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @ApiModel
-@Data
+@Getter
+@Setter
 public class BaseApiResponse {
 	@ApiModelProperty(value = "isSuccesful", dataType = "Boolean")
 	private Boolean isSuccesful = Boolean.TRUE;

@@ -1,16 +1,16 @@
 package com.trendyol.shoppingcard.impl;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import com.trendyol.shoppingcard.dto.CampaignDTO;
 import com.trendyol.shoppingcard.dto.CategoryDTO;
@@ -19,17 +19,20 @@ import com.trendyol.shoppingcard.intf.CampaignService;
 import com.trendyol.shoppingcard.repositories.CampaignRepository;
 import com.trendyol.shoppingcard.util.DiscountType;
 
-@SpringBootTest
 public class CampaignServiceImplTest {
 
-	@Mock
 	private CampaignRepository campaignRepository;
 
-	@InjectMocks
 	private CampaignService controller;
+
+	@Before
+	public void setup() {
+		this.campaignRepository = Mockito.mock(CampaignRepository.class);
+		controller = new CampaignServiceImpl(campaignRepository);
+	}
 	
 	@Test
-	public void testCampaignCategory() throws Exception {
+	public void testCreateCampaign() throws Exception {
 		CampaignDTO campaignDTO = new CampaignDTO();
 		List<CategoryDTO> categoryDTOList = new ArrayList<>();
 		CategoryDTO categoryDTO = new CategoryDTO();
@@ -44,13 +47,13 @@ public class CampaignServiceImplTest {
 		campaignDTO.setMinNumberOfProducts(3);
 		campaignDTO.setId(1L);
 		Campaign model = Campaign.toModel(campaignDTO);
-		Mockito.when(campaignRepository.save(model)).thenReturn(model);
+		Mockito.when(campaignRepository.save(Mockito.any())).thenReturn(model);
 		Long id = controller.createCampaign(campaignDTO);
-	    assertEquals(1L, id);
+		assertThat(id, is(notNullValue()));
 	}
 	
 	@Test(expected = Exception.class)
-	public void testCreateProductDTOIsNull() throws Exception {
+	public void testCreateCampaignDTOIsNull() throws Exception {
 		CampaignDTO campaignDTO = null;
 		controller.createCampaign(campaignDTO);
 	}

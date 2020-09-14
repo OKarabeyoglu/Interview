@@ -3,11 +3,13 @@ package com.trendyol.shoppingcard.dto;
 import java.math.BigDecimal;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@EqualsAndHashCode(callSuper=false)
+@Getter
+@Setter
+@NoArgsConstructor
 public class ProductDTO extends BaseDTO{
 	@ApiModelProperty(value = "title", dataType = "String", example = "Apple")
 	private String title;

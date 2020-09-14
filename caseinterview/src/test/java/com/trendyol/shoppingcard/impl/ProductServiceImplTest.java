@@ -1,14 +1,13 @@
 package com.trendyol.shoppingcard.impl;
 
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
 import java.math.BigDecimal;
 
-import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import com.trendyol.shoppingcard.dto.CategoryDTO;
@@ -19,11 +18,15 @@ import com.trendyol.shoppingcard.repositories.ProductRepository;
 
 public class ProductServiceImplTest {
 
-	@Mock
 	private ProductRepository productRepository;
 
-	@InjectMocks
 	private ProductService controller;
+
+	@Before
+	public void setup() {
+		this.productRepository = Mockito.mock(ProductRepository.class);
+		controller = new ProductServiceImpl(productRepository);
+	}
 
 	@Test
 	public void testCreateProduct() throws Exception {
@@ -38,11 +41,11 @@ public class ProductServiceImplTest {
 		productDTO.setCategory(categoryDTO);
 		productDTO.setId(1L);
 		Product model = Product.toModel(productDTO);
-		Mockito.when(productRepository.save(model)).thenReturn(model);
+		Mockito.when(productRepository.save(Mockito.any())).thenReturn(model);
 		Long id = controller.createProduct(productDTO);
-	    assertEquals(1L, id);
+		assertThat(id, is(notNullValue()));
 	}
-	
+
 	@Test(expected = Exception.class)
 	public void testCreateProductDTOIsNull() throws Exception {
 		ProductDTO productDTO = null;

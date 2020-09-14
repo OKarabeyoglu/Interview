@@ -4,11 +4,13 @@ import com.trendyol.shoppingcard.dto.CampaignDTO;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @ApiModel
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class CampaignDTORequest {
 	@ApiModelProperty(value = "campaignDTO", dataType = "CampaignDTO")

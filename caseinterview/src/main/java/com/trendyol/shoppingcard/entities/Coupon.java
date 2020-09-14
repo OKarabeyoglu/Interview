@@ -6,14 +6,18 @@ import javax.persistence.Entity;
 
 import com.trendyol.shoppingcard.util.DiscountType;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 public class Coupon extends BaseEntity<Long>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private BigDecimal discountAmount;
 	private Integer minimumCartAmount;
 	private DiscountType discountType;

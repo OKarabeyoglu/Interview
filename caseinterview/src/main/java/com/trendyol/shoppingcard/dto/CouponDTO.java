@@ -5,11 +5,13 @@ import java.math.BigDecimal;
 import com.trendyol.shoppingcard.util.DiscountType;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
+@NoArgsConstructor
 public class CouponDTO extends BaseDTO {
 	@ApiModelProperty(value = "discountAmount", dataType = "BigDecimal", example = "2.00")
 	private BigDecimal discountAmount;

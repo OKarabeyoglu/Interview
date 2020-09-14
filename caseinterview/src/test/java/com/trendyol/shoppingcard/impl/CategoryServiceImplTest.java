@@ -2,9 +2,8 @@ package com.trendyol.shoppingcard.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import com.trendyol.shoppingcard.dto.CategoryDTO;
@@ -13,12 +12,15 @@ import com.trendyol.shoppingcard.intf.CategoryService;
 import com.trendyol.shoppingcard.repositories.CategoryRepository;
 
 public class CategoryServiceImplTest {
-
-	@Mock
+	
 	private CategoryRepository categoryRepository;
-
-	@InjectMocks
 	private CategoryService controller;
+
+	@Before
+	public void setup() {
+		this.categoryRepository = Mockito.mock(CategoryRepository.class);
+		controller = new CategoryServiceImpl(categoryRepository);
+	}
 	
 	@Test
 	public void testCreateCategory() throws Exception {
@@ -28,13 +30,13 @@ public class CategoryServiceImplTest {
 		categoryDTO.setCampaignDTOList(null);
 		categoryDTO.setId(1L);
 		Category model = Category.toModel(categoryDTO);
-		Mockito.when(categoryRepository.save(model)).thenReturn(model);
+		Mockito.when(categoryRepository.save(Mockito.any())).thenReturn(model);
 		Long id = controller.createCategory(categoryDTO);
 	    assertEquals(1L, id);
 	}
 	
 	@Test(expected = Exception.class)
-	public void testCreateProductDTOIsNull() throws Exception {
+	public void testCreateCategoryDTOIsNull() throws Exception {
 		CategoryDTO categoryDTO = null;
 		controller.createCategory(categoryDTO);
 	}

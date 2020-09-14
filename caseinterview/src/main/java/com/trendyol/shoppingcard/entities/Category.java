@@ -12,14 +12,18 @@ import org.springframework.util.CollectionUtils;
 
 import com.trendyol.shoppingcard.dto.CategoryDTO;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 public class Category extends BaseEntity<Long>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String title;
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 	private Category parentCategory;

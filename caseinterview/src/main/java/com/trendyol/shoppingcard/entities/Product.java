@@ -9,14 +9,18 @@ import javax.persistence.ManyToOne;
 
 import com.trendyol.shoppingcard.dto.ProductDTO;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 public class Product extends BaseEntity<Long>{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String title;
 	private BigDecimal amount;
 	private String currencyCode;

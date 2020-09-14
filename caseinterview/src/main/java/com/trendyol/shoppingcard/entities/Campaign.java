@@ -11,13 +11,18 @@ import javax.persistence.OneToMany;
 import com.trendyol.shoppingcard.dto.CampaignDTO;
 import com.trendyol.shoppingcard.util.DiscountType;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 public class Campaign extends BaseEntity<Long> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private BigDecimal discountAmount;
 
