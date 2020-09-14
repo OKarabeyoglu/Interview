@@ -1,8 +1,6 @@
 package com.trendyol.shoppingcard;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,6 +8,8 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.BlockJUnit4ClassRunner;
 import org.mockito.Mockito;
 
 import com.trendyol.shoppingcard.dto.CampaignDTO;
@@ -19,6 +19,7 @@ import com.trendyol.shoppingcard.request.CampaignDTORequest;
 import com.trendyol.shoppingcard.response.SaveResponse;
 import com.trendyol.shoppingcard.util.DiscountType;
 
+@RunWith(BlockJUnit4ClassRunner.class)
 public class CampaignApiControllerTest {
 	
 	private CampaignService campaignService;
@@ -50,6 +51,6 @@ public class CampaignApiControllerTest {
 		CampaignDTORequest request = new CampaignDTORequest();
 		request.setCampaignDTO(campaignDTO);
 		SaveResponse response = controller.saveCampaign(request);
-		assertThat(response, is(notNullValue()));
+		assertThat(response).isNotNull();
 	}
 }

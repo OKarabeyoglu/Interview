@@ -1,13 +1,12 @@
 package com.trendyol.shoppingcard.impl;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
-
+import static org.assertj.core.api.Assertions.*;
 import java.math.BigDecimal;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.BlockJUnit4ClassRunner;
 import org.mockito.Mockito;
 
 import com.trendyol.shoppingcard.dto.CategoryDTO;
@@ -16,6 +15,7 @@ import com.trendyol.shoppingcard.entities.Product;
 import com.trendyol.shoppingcard.intf.ProductService;
 import com.trendyol.shoppingcard.repositories.ProductRepository;
 
+@RunWith(BlockJUnit4ClassRunner.class)
 public class ProductServiceImplTest {
 
 	private ProductRepository productRepository;
@@ -43,7 +43,7 @@ public class ProductServiceImplTest {
 		Product model = Product.toModel(productDTO);
 		Mockito.when(productRepository.save(Mockito.any())).thenReturn(model);
 		Long id = controller.createProduct(productDTO);
-		assertThat(id, is(notNullValue()));
+		assertThat(id).isNotNull();
 	}
 
 	@Test(expected = Exception.class)

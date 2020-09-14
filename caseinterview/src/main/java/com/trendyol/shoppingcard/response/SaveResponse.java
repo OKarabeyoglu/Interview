@@ -11,6 +11,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SaveResponse implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@ApiModelProperty(value = "id", dataType = "Long")
 	private Long id;
 
