@@ -1,6 +1,6 @@
 package com.trendyol.shoppingcard.impl;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.mockito.Mockito;
 
-import com.trendyol.shoppingcard.dto.CartDTO;
 import com.trendyol.shoppingcard.dto.UserDTO;
 import com.trendyol.shoppingcard.entities.Cart;
 import com.trendyol.shoppingcard.entities.User;

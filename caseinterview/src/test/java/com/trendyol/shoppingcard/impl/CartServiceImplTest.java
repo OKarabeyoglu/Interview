@@ -11,7 +11,6 @@ import org.mockito.Mockito;
 
 import com.trendyol.shoppingcard.dto.CartDTO;
 import com.trendyol.shoppingcard.dto.UserDTO;
-import com.trendyol.shoppingcard.entities.User;
 import com.trendyol.shoppingcard.intf.CartItemService;
 import com.trendyol.shoppingcard.intf.CartService;
 import com.trendyol.shoppingcard.intf.CouponService;
