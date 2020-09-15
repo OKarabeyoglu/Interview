@@ -2,9 +2,6 @@ package com.trendyol.shoppingcard.impl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,8 +9,8 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 import org.mockito.Mockito;
 
 import com.trendyol.shoppingcard.dto.UserDTO;
-import com.trendyol.shoppingcard.entities.Cart;
 import com.trendyol.shoppingcard.entities.User;
+import com.trendyol.shoppingcard.generator.MockDataGenerator;
 import com.trendyol.shoppingcard.intf.UserService;
 import com.trendyol.shoppingcard.repositories.UserRepository;
 
@@ -32,16 +29,7 @@ public class UserServiceImplTest {
 	
 	@Test
 	public void testGetSessionUser() {
-		User model = new User();
-		model.setId(2L);
-		model.setName("Ovunc");
-		model.setSurname("Karabeyoglu");
-		model.setEmail("ovunckarabeyoglu@gmail.com");
-		List<Cart> cartList = new ArrayList<Cart>();
-		Cart cart = new Cart();
-		cart.setId(1L);
-		cartList.add(cart);
-		model.setCartList(cartList);
+		User model = MockDataGenerator.createUserModel();
 		Mockito.when(userRepository.findOneById(2L)).thenReturn(model);
 		UserDTO response = controller.getSessionUser();
 		assertThat(response).isNotNull();

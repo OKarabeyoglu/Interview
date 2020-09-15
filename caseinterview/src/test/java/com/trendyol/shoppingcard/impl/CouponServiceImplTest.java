@@ -3,8 +3,6 @@ package com.trendyol.shoppingcard.impl;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -15,9 +13,9 @@ import org.mockito.Mockito;
 
 import com.trendyol.shoppingcard.dto.CouponDTO;
 import com.trendyol.shoppingcard.entities.Coupon;
+import com.trendyol.shoppingcard.generator.MockDataGenerator;
 import com.trendyol.shoppingcard.intf.CouponService;
 import com.trendyol.shoppingcard.repositories.CouponRepository;
-import com.trendyol.shoppingcard.util.DiscountType;
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class CouponServiceImplTest {
@@ -34,15 +32,7 @@ public class CouponServiceImplTest {
 	
 	@Test
 	public void testGetApplicableCoupons() {
-		Coupon model = new Coupon();
-		model.setCreateDate(LocalDate.now());
-		model.setModifiedDate(LocalDate.now());
-		model.setId(1L);
-		model.setDiscountAmount(new BigDecimal(50));
-		model.setMinimumCartAmount(new BigDecimal(500));
-		model.setDiscountType(DiscountType.AMOUNT);
-		List<Coupon> modelList = new ArrayList<>();
-		modelList.add(model);
+		List<Coupon> modelList = MockDataGenerator.createCouponModelList();
 		Mockito.when(couponRepository.findByMinimumCartAmountLessThanEqual(new BigDecimal(80))).thenReturn(modelList);
 		List<CouponDTO> result = controller.getApplicableCoupons(new BigDecimal(80));
 		assertThat(result).isNotNull();
@@ -57,13 +47,7 @@ public class CouponServiceImplTest {
 	
 	@Test
 	public void testCreateCoupon() {
-		Coupon model = new Coupon();
-		model.setCreateDate(LocalDate.now());
-		model.setModifiedDate(LocalDate.now());
-		model.setId(1L);
-		model.setDiscountAmount(new BigDecimal(50));
-		model.setMinimumCartAmount(new BigDecimal(500));
-		model.setDiscountType(DiscountType.AMOUNT);
+		Coupon model = MockDataGenerator.createCouponModel();
 		Mockito.when(couponRepository.save(Mockito.any())).thenReturn(model);
 		Long result = controller.createCoupon(Coupon.toDTO(model));
 		assertThat(result).isNotNull();

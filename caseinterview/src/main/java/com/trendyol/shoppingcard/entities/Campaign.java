@@ -49,16 +49,4 @@ public class Campaign extends BaseEntity<Long> {
 		return model;
 	}
 
-	public static CampaignDTO toDTO(Campaign model) {
-		CampaignDTO dto = new CampaignDTO();
-		dto.setDiscountAmount(model.getDiscountAmount());
-		dto.setDiscountType(model.getDiscountType());
-		dto.setMinNumberOfProducts(model.getMinimumProductCount());
-		dto.setCategoryDTOList(Category.toDTOList(model.getCategoryList()));
-		dto.setId(model.getId());
-		dto.setCreateDate(model.getCreateDate());
-		dto.setModifiedDate(model.getModifiedDate());
-		return dto;
-	}
-
 }

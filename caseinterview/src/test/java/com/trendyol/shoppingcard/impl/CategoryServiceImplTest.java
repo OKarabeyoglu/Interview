@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 
 import com.trendyol.shoppingcard.dto.CategoryDTO;
 import com.trendyol.shoppingcard.entities.Category;
+import com.trendyol.shoppingcard.generator.MockDataGenerator;
 import com.trendyol.shoppingcard.intf.CategoryService;
 import com.trendyol.shoppingcard.repositories.CategoryRepository;
 
@@ -27,11 +28,7 @@ public class CategoryServiceImplTest {
 
 	@Test
 	public void testCreateCategory() throws Exception {
-		CategoryDTO categoryDTO = new CategoryDTO();
-		categoryDTO.setTitle("Clothes");
-		categoryDTO.setParentCategory(null);
-		categoryDTO.setCampaignDTOList(null);
-		categoryDTO.setId(1L);
+		CategoryDTO categoryDTO = MockDataGenerator.createCategoryDTO();
 		Category model = Category.toModel(categoryDTO);
 		Mockito.when(categoryRepository.save(Mockito.any())).thenReturn(model);
 		Long id = controller.createCategory(categoryDTO);

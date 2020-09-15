@@ -80,24 +80,5 @@ public class Category extends BaseEntity<Long>{
 		dto.setProductDTOList(Product.toDTOList(model.getProductList()));
 		return dto;
 	}
-	
-	public static List<CategoryDTO> toDTOList(List<Category> modelList) {
-		List<CategoryDTO> dtoList = new ArrayList<CategoryDTO>();
-		if(!CollectionUtils.isEmpty(modelList)) {
-			for (Category model : modelList) {
-				CategoryDTO dto = new CategoryDTO();
-				dto.setId(model.getId());
-				dto.setTitle(model.getTitle());
-				if(model.getParentCategory() != null) {
-					dto.setParentCategory(toDTO(model.getParentCategory()));
-				}
-				dto.setCreateDate(model.getCreateDate());
-				dto.setModifiedDate(model.getModifiedDate());
-				dto.setProductDTOList(Product.toDTOList(model.getProductList()));
-				dtoList.add(dto);
-			}
-		}
-		return dtoList;
-	}
 
 }

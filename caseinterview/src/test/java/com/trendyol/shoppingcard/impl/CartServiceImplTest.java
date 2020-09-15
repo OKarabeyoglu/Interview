@@ -1,23 +1,19 @@
 package com.trendyol.shoppingcard.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.mockito.Mockito;
 
-import com.trendyol.shoppingcard.dto.CartDTO;
 import com.trendyol.shoppingcard.dto.UserDTO;
 import com.trendyol.shoppingcard.entities.Cart;
+import com.trendyol.shoppingcard.generator.MockDataGenerator;
 import com.trendyol.shoppingcard.intf.CartItemService;
 import com.trendyol.shoppingcard.intf.CartService;
 import com.trendyol.shoppingcard.intf.CouponService;
 import com.trendyol.shoppingcard.intf.UserService;
 import com.trendyol.shoppingcard.repositories.CartRepository;
-import com.trendyol.shoppingcard.util.CartStatus;
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class CartServiceImplTest {
@@ -39,17 +35,7 @@ public class CartServiceImplTest {
 
 	@Test
 	public void testCompleteOrCancelCart() {
-		UserDTO userDTO = new UserDTO();
-		userDTO.setId(2L);
-		userDTO.setName("Ovunc");
-		userDTO.setSurname("Karabeyoglu");
-		userDTO.setEmail("ovunckarabeyoglu@gmail.com");
-		List<CartDTO> cartDTOList = new ArrayList<CartDTO>();
-		CartDTO cartDTO = new CartDTO();
-		cartDTO.setId(1L);
-		cartDTO.setStatus(CartStatus.ACTIVE);
-		cartDTOList.add(cartDTO);
-		userDTO.setCartDTOList(cartDTOList);
+		UserDTO userDTO = MockDataGenerator.createUserDTO();
 		Mockito.when(userService.getSessionUser()).thenReturn(userDTO);
 		Mockito.when(cartRepository.findOneById(userDTO.getCartDTOList().get(0).getId())).thenReturn(new Cart());
 		controller.completeOrCancelCart();
