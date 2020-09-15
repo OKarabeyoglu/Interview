@@ -10,8 +10,6 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.trendyol.shoppingcard.dto.UserDTO;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,16 +29,4 @@ public class User extends BaseEntity<Long> {
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Cart> cartList;
 
-	public static UserDTO toDTO(User user) {
-		if (user == null) {
-			return null;
-		} else {
-			UserDTO dto = UserDTO.builder().cartDTOList(Cart.toDTOList(user.getCartList())).email(user.getEmail())
-					.name(user.getName()).surname(user.getSurname()).build();
-			dto.setCreateDate(user.getCreateDate());
-			dto.setModifiedDate(user.getModifiedDate());
-			dto.setId(user.getId());
-			return dto;
-		}
-	}
 }

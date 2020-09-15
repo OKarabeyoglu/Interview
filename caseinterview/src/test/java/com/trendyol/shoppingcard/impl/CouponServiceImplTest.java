@@ -2,7 +2,6 @@ package com.trendyol.shoppingcard.impl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Before;
@@ -33,15 +32,15 @@ public class CouponServiceImplTest {
 	@Test
 	public void testGetApplicableCoupons() {
 		List<Coupon> modelList = MockDataGenerator.createCouponModelList();
-		Mockito.when(couponRepository.findByMinimumCartAmountLessThanEqual(new BigDecimal(80))).thenReturn(modelList);
-		List<CouponDTO> result = controller.getApplicableCoupons(new BigDecimal(80));
+		Mockito.when(couponRepository.findAll()).thenReturn(modelList);
+		List<CouponDTO> result = controller.getApplicableCoupons();
 		assertThat(result).isNotNull();
 	}
 	
 	@Test
 	public void testGetApplicableCouponsNoRecord() {
-		Mockito.when(couponRepository.findByMinimumCartAmountLessThanEqual(new BigDecimal(80))).thenReturn(null);
-		List<CouponDTO> result = controller.getApplicableCoupons(new BigDecimal(80));
+		Mockito.when(couponRepository.findAll()).thenReturn(null);
+		List<CouponDTO> result = controller.getApplicableCoupons();
 		assertThat(result).isNotNull();
 	}
 	

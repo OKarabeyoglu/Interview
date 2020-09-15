@@ -11,17 +11,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CartItemDTO {
-	@ApiModelProperty(value = "quantity", dataType = "Integer", example = "2")
+	@ApiModelProperty(value = "quantity", dataType = "Integer")
 	private Integer quantity;
 	@ApiModelProperty(value = "product", dataType = "Product")
 	private ProductDTO product;
-	@ApiModelProperty(value = "totalItemsAmount", dataType = "MoneyDTO")
-	private BigDecimal totalItemsAmount;
-	@ApiModelProperty(value = "totalItemsAmountCurrency", dataType = "String")
-	private String totalItemsAmountCurrency;
-	@ApiModelProperty(value = "discountedTotalItemsAmount", dataType = "BigDecimal")
-	private BigDecimal discountedTotalItemsAmount;
-	@ApiModelProperty(value = "discountedTotalItemsAmount", dataType = "BigDecimal")
-	private String discountedTotalItemsAmountCurrency;
+	@ApiModelProperty(value = "amount", dataType = "BigDecimal")
+	private BigDecimal amount = BigDecimal.ZERO;
+	@ApiModelProperty(value = "discountedAmount", dataType = "BigDecimal")
+	private BigDecimal discountedAmount = BigDecimal.ZERO;
+	
 
 }

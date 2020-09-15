@@ -10,6 +10,7 @@ public final class ApiEndpoints {
 	public static final String CATEGORY_API = API_BASE_URL + "/category/*";
 	public static final String CAMPAIGN_API = API_BASE_URL + "/campaign/*";
 	public static final String COUPON_API = API_BASE_URL + "/coupon/*";
+	public static final String CART_API = API_BASE_URL + "/cart/*";
 
 	private ApiEndpoints() {
 

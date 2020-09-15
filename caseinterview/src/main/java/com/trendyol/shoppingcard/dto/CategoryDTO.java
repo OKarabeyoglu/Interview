@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CategoryDTO extends BaseDTO {
 	
-	@ApiModelProperty(value = "title", dataType = "String", example = "food")
+	@ApiModelProperty(value = "title", dataType = "String")
 	private String title;
 	@ApiModelProperty(value = "parentCategory", dataType = "Category")
 	private CategoryDTO parentCategory;

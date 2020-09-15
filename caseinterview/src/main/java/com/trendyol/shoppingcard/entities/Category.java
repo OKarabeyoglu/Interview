@@ -69,15 +69,17 @@ public class Category extends BaseEntity<Long>{
 	}
 	
 	public static CategoryDTO toDTO(Category model) {
-		CategoryDTO dto = new CategoryDTO();
-		dto.setId(model.getId());
-		dto.setTitle(model.getTitle());
-		if(model.getParentCategory() != null) {
-			dto.setParentCategory(toDTO(model.getParentCategory()));
+		CategoryDTO dto = null;
+		if(model != null) {
+			dto = new CategoryDTO();
+			dto.setId(model.getId());
+			dto.setTitle(model.getTitle());
+			if(model.getParentCategory() != null) {
+				dto.setParentCategory(toDTO(model.getParentCategory()));
+			}
+			dto.setCreateDate(model.getCreateDate());
+			dto.setModifiedDate(model.getModifiedDate());
 		}
-		dto.setCreateDate(model.getCreateDate());
-		dto.setModifiedDate(model.getModifiedDate());
-		dto.setProductDTOList(Product.toDTOList(model.getProductList()));
 		return dto;
 	}
 

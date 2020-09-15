@@ -1,6 +1,5 @@
 package com.trendyol.shoppingcard.impl;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,8 @@ public class CouponServiceImpl implements CouponService{
 	}
 	
 	@Override
-	public List<CouponDTO> getApplicableCoupons(BigDecimal cartAmount) {
-		List<Coupon> couponList = couponRepository.findByMinimumCartAmountLessThanEqual(cartAmount);
+	public List<CouponDTO> getApplicableCoupons() {
+		List<Coupon> couponList = couponRepository.findAll();
 		return Coupon.toDTOList(couponList);
 	}
 	

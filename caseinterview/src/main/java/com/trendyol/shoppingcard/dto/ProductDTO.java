@@ -11,11 +11,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ProductDTO extends BaseDTO{
-	@ApiModelProperty(value = "title", dataType = "String", example = "Apple")
+	@ApiModelProperty(value = "title", dataType = "String")
 	private String title;
-	@ApiModelProperty(value = "amount", dataType = "BigDecimal", example = "5.00")
+	@ApiModelProperty(value = "amount", dataType = "BigDecimal")
 	private BigDecimal amount;
-	@ApiModelProperty(value = "currencyCode", dataType = "String", example = "TL")
+	@ApiModelProperty(value = "currencyCode", dataType = "String")
 	private String currencyCode;
 	@ApiModelProperty(value = "category", dataType = "Category")
 	private CategoryDTO category;

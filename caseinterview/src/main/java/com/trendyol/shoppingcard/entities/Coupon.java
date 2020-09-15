@@ -42,8 +42,9 @@ public class Coupon extends BaseEntity<Long> {
 	}
 	
 	public static CouponDTO toDTO(Coupon model) {
-		CouponDTO dto = new CouponDTO();	
+		CouponDTO dto = null;	
 		if (model != null) {
+		    dto = new CouponDTO();
 			dto.setId(model.getId());
 			dto.setCreateDate(model.getCreateDate());
 			dto.setModifiedDate(model.getModifiedDate());
