@@ -1,4 +1,4 @@
-package com.trendyol.shoppingcard;
+package com.trendyol.shoppingcard.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.trendyol.shoppingcard.ApiEndpoints;
 import com.trendyol.shoppingcard.intf.CategoryService;
 import com.trendyol.shoppingcard.request.CategoryDTORequest;
 import com.trendyol.shoppingcard.response.SaveResponse;

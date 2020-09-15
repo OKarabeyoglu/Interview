@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.mockito.Mockito;
 
+import com.trendyol.shoppingcard.controller.CategoryApiController;
 import com.trendyol.shoppingcard.dto.CategoryDTO;
 import com.trendyol.shoppingcard.generator.MockDataGenerator;
 import com.trendyol.shoppingcard.intf.CategoryService;
