@@ -51,7 +51,7 @@ public class Category extends BaseEntity<Long>{
 	}
 	
 	public static List<Category> toModelList(List<CategoryDTO> dtoList) {
-		List<Category> modelList = new ArrayList<Category>();
+		List<Category> modelList = new ArrayList<>();
 		if(!CollectionUtils.isEmpty(dtoList)) {
 			for (CategoryDTO dto : dtoList) {
 				Category model = new Category();

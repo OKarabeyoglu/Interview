@@ -32,7 +32,7 @@ public class CampaignApiController {
 	@PostMapping(value = "/save")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "saveCampaign", notes = "save campaign")
-	public SaveResponse saveCampaign(@RequestBody CampaignDTORequest request) throws Exception {
+	public SaveResponse saveCampaign(@RequestBody CampaignDTORequest request) {
 		return new SaveResponse(campaignService.createCampaign(request.getCampaignDTO()));
 	}
 

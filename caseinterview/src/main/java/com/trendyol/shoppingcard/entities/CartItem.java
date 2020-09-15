@@ -42,7 +42,7 @@ public class CartItem extends BaseEntity<Long> {
 	}
 
 	public static List<CartItemDTO> toDTOList(List<CartItem> modelList) {
-		List<CartItemDTO> dtoList = new ArrayList<CartItemDTO>();
+		List<CartItemDTO> dtoList = new ArrayList<>();
 		if (!CollectionUtils.isEmpty(modelList)) {
 			for (CartItem model : modelList) {
 				CartItemDTO dto = new CartItemDTO();

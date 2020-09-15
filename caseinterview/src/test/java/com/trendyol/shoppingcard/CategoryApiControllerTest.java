@@ -28,7 +28,7 @@ public class CategoryApiControllerTest {
 	}
 
 	@Test
-	public void testSaveCategory() throws Exception {
+	public void testSaveCategory() {
 		CategoryDTO categoryDTO = MockDataGenerator.createCategoryDTO();
 		Mockito.when(categoryService.createCategory(categoryDTO)).thenReturn(1L);
 		CategoryDTORequest request = new CategoryDTORequest();

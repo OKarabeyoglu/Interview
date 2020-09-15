@@ -56,7 +56,7 @@ public class Coupon extends BaseEntity<Long> {
 	}
 
 	public static List<CouponDTO> toDTOList(List<Coupon> modelList) {
-		List<CouponDTO> dtoList = new ArrayList<CouponDTO>();
+		List<CouponDTO> dtoList = new ArrayList<>();
 		if (!CollectionUtils.isEmpty(modelList)) {
 			for (Coupon model : modelList) {
 				CouponDTO dto = new CouponDTO();

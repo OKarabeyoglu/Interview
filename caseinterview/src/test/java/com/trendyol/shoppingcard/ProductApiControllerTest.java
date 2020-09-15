@@ -28,7 +28,7 @@ public class ProductApiControllerTest {
 	}
 
 	@Test
-	public void testSaveProduct() throws Exception {
+	public void testSaveProduct() {
 		ProductDTO productDTO = MockDataGenerator.createProductDTO();
 		Mockito.when(productService.createProduct(productDTO)).thenReturn(1L);
 		ProductDTORequest request = new ProductDTORequest();

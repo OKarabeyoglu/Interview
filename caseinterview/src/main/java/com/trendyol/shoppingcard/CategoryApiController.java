@@ -32,7 +32,7 @@ public class CategoryApiController {
 	@PostMapping(value = "/save")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "saveCategory", notes = "save category")
-	public SaveResponse saveCategory(@RequestBody CategoryDTORequest request) throws Exception {
+	public SaveResponse saveCategory(@RequestBody CategoryDTORequest request) {
 		return new SaveResponse(categoryService.createCategory(request.getCategoryDTO()));
 	}
 

@@ -32,7 +32,7 @@ private CouponService couponService;
 	@PostMapping(value = "/save")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "saveCoupon", notes = "save coupon")
-    public SaveResponse saveCoupon(@RequestBody CouponDTORequest request) throws Exception {
+    public SaveResponse saveCoupon(@RequestBody CouponDTORequest request) {
         return new SaveResponse(couponService.createCoupon(request.getCouponDTO()));
     }
 

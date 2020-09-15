@@ -8,7 +8,6 @@ import com.trendyol.shoppingcard.dto.CampaignDTO;
 import com.trendyol.shoppingcard.entities.Campaign;
 import com.trendyol.shoppingcard.intf.CampaignService;
 import com.trendyol.shoppingcard.repositories.CampaignRepository;
-import com.trendyol.shoppingcard.util.ExceptionDefinition;
 
 @Transactional
 @Service
@@ -22,10 +21,7 @@ public class CampaignServiceImpl implements CampaignService  {
 	}
 
 	@Override
-	public Long createCampaign(CampaignDTO campaignDTO) throws Exception {
-		if (campaignDTO == null) {
-			throw new Exception(ExceptionDefinition.PRODUCT_DTO_CAN_NOT_BE_NULL_ERROR.getExcetionDefinition());
-		}
+	public Long createCampaign(CampaignDTO campaignDTO) {
 		return campaignRepository.save(Campaign.toModel(campaignDTO)).getId();
 	}
 

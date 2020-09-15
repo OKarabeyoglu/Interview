@@ -32,7 +32,7 @@ public class ProductApiController {
 	@PostMapping(value = "/save")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "saveProduct", notes = "save product")
-    public SaveResponse saveProduct(@RequestBody ProductDTORequest request) throws Exception {
+    public SaveResponse saveProduct(@RequestBody ProductDTORequest request) {
         return new SaveResponse(productService.createProduct(request.getProductDTO()));
     }
 

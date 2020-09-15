@@ -28,7 +28,7 @@ public class CouponApiControllerTest {
 	}
 	
 	@Test
-	public void testSaveCoupon() throws Exception {
+	public void testSaveCoupon() {
 		CouponDTO couponDTO = MockDataGenerator.createCouponDTO();
 		Mockito.when(couponService.createCoupon(couponDTO)).thenReturn(1L);
 		CouponDTORequest request = new CouponDTORequest();

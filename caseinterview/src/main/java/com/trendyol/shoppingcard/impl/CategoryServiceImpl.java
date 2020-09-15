@@ -8,7 +8,6 @@ import com.trendyol.shoppingcard.dto.CategoryDTO;
 import com.trendyol.shoppingcard.entities.Category;
 import com.trendyol.shoppingcard.intf.CategoryService;
 import com.trendyol.shoppingcard.repositories.CategoryRepository;
-import com.trendyol.shoppingcard.util.ExceptionDefinition;
 
 @Transactional
 @Service
@@ -22,10 +21,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Long createCategory(CategoryDTO categoryDTO) throws Exception {
-		if (categoryDTO == null) {
-			throw new Exception(ExceptionDefinition.PRODUCT_DTO_CAN_NOT_BE_NULL_ERROR.getExcetionDefinition());
-		}
+	public Long createCategory(CategoryDTO categoryDTO) {
 		return categoryRepository.save(Category.toModel(categoryDTO)).getId();
 	}
 

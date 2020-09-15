@@ -28,7 +28,7 @@ public class CampaignApiControllerTest {
 	}
 
 	@Test
-	public void testSaveCampaign() throws Exception {
+	public void testSaveCampaign() {
 		CampaignDTO campaignDTO = MockDataGenerator.createCampaignDTO();
 		Mockito.when(campaignService.createCampaign(campaignDTO)).thenReturn(1L);
 		CampaignDTORequest request = new CampaignDTORequest();
