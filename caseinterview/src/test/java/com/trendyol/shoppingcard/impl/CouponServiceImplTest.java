@@ -54,5 +54,19 @@ public class CouponServiceImplTest {
 		List<CouponDTO> result = controller.getApplicableCoupons(new BigDecimal(80));
 		assertThat(result).isNotNull();
 	}
+	
+	@Test
+	public void testCreateCoupon() {
+		Coupon model = new Coupon();
+		model.setCreateDate(LocalDate.now());
+		model.setModifiedDate(LocalDate.now());
+		model.setId(1L);
+		model.setDiscountAmount(new BigDecimal(50));
+		model.setMinimumCartAmount(new BigDecimal(500));
+		model.setDiscountType(DiscountType.AMOUNT);
+		Mockito.when(couponRepository.save(Mockito.any())).thenReturn(model);
+		Long result = controller.createCoupon(Coupon.toDTO(model));
+		assertThat(result).isNotNull();
+	}
 
 }

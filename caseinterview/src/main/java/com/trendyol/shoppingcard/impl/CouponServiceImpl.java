@@ -28,5 +28,10 @@ public class CouponServiceImpl implements CouponService{
 		List<Coupon> couponList = couponRepository.findByMinimumCartAmountLessThanEqual(cartAmount);
 		return Coupon.toDTOList(couponList);
 	}
+	
+	@Override
+	public Long createCoupon(CouponDTO couponDTO) {
+		return couponRepository.save(Coupon.toModel(couponDTO)).getId();
+	}
 
 }

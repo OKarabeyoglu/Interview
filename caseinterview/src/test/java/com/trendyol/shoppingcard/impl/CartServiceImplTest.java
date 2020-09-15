@@ -11,11 +11,13 @@ import org.mockito.Mockito;
 
 import com.trendyol.shoppingcard.dto.CartDTO;
 import com.trendyol.shoppingcard.dto.UserDTO;
+import com.trendyol.shoppingcard.entities.Cart;
 import com.trendyol.shoppingcard.intf.CartItemService;
 import com.trendyol.shoppingcard.intf.CartService;
 import com.trendyol.shoppingcard.intf.CouponService;
 import com.trendyol.shoppingcard.intf.UserService;
 import com.trendyol.shoppingcard.repositories.CartRepository;
+import com.trendyol.shoppingcard.util.CartStatus;
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class CartServiceImplTest {
@@ -45,8 +47,11 @@ public class CartServiceImplTest {
 		List<CartDTO> cartDTOList = new ArrayList<CartDTO>();
 		CartDTO cartDTO = new CartDTO();
 		cartDTO.setId(1L);
+		cartDTO.setStatus(CartStatus.ACTIVE);
+		cartDTOList.add(cartDTO);
 		userDTO.setCartDTOList(cartDTOList);
 		Mockito.when(userService.getSessionUser()).thenReturn(userDTO);
-		Mockito.when(cartRepository.findOneById(cartDTO.getId())).thenReturn(Mockito.any());
+		Mockito.when(cartRepository.findOneById(userDTO.getCartDTOList().get(0).getId())).thenReturn(new Cart());
+		controller.completeOrCancelCart();
 	}
 }

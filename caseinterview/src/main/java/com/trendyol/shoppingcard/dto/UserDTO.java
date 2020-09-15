@@ -3,6 +3,8 @@ package com.trendyol.shoppingcard.dto;
 import java.util.List;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +12,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class UserDTO extends BaseDTO{
 	
 	@ApiModelProperty(value = "name", dataType = "String", example = "Ovunc")

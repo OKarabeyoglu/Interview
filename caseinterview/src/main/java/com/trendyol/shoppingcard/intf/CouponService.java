@@ -9,4 +9,6 @@ public interface CouponService {
 
 	List<CouponDTO> getApplicableCoupons(BigDecimal cartAmount);
 
+	Long createCoupon(CouponDTO couponDTO);
+
 }

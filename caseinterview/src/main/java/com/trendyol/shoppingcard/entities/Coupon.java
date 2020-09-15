@@ -30,8 +30,19 @@ public class Coupon extends BaseEntity<Long> {
 	@Enumerated(EnumType.STRING)
 	private DiscountType discountType;
 	
+	public static Coupon toModel(CouponDTO dto) {
+		Coupon model = new Coupon();
+		model.setId(dto.getId());
+		model.setCreateDate(dto.getCreateDate());
+		model.setModifiedDate(dto.getModifiedDate());
+		model.setDiscountAmount(dto.getDiscountAmount());
+		model.setMinimumCartAmount(dto.getMinimumCartAmount());
+		model.setDiscountType(dto.getDiscountType());
+		return model;
+	}
+	
 	public static CouponDTO toDTO(Coupon model) {
-		CouponDTO dto = new CouponDTO();
+		CouponDTO dto = new CouponDTO();	
 		if (model != null) {
 			dto.setId(model.getId());
 			dto.setCreateDate(model.getCreateDate());

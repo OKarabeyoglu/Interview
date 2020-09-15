@@ -32,16 +32,15 @@ public class User extends BaseEntity<Long> {
 	private List<Cart> cartList;
 
 	public static UserDTO toDTO(User user) {
-		UserDTO userDTO = new UserDTO();
-		if (user != null) {
-			userDTO.setCreateDate(user.getCreateDate());
-			userDTO.setModifiedDate(user.getModifiedDate());
-			userDTO.setEmail(user.getEmail());
-			userDTO.setId(user.getId());
-			userDTO.setSurname(user.getSurname());
-			userDTO.setName(user.getName());
-			userDTO.setCartDTOList(Cart.toDTOList(user.getCartList()));
+		if (user == null) {
+			return null;
+		} else {
+			UserDTO dto = UserDTO.builder().cartDTOList(Cart.toDTOList(user.getCartList())).email(user.getEmail())
+					.name(user.getName()).surname(user.getSurname()).build();
+			dto.setCreateDate(user.getCreateDate());
+			dto.setModifiedDate(user.getModifiedDate());
+			dto.setId(user.getId());
+			return dto;
 		}
-		return userDTO;
 	}
 }

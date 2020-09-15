@@ -51,7 +51,7 @@ public class UserServiceImplTest {
 	public void testGetSessionUserSessionUserNotFound() {
 		Mockito.when(userRepository.findOneById(1L)).thenReturn(null);
 		UserDTO response = controller.getSessionUser();
-		assertThat(response).isNotNull();
+		assertThat(response).isNull();
 	}
 
 }

@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import com.trendyol.shoppingcard.util.DiscountType;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
