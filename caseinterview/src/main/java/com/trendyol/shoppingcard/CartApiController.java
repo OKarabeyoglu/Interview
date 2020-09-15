@@ -63,11 +63,19 @@ public class CartApiController {
         return new ShowCartResponse(cartService.showCart(request.getCartId()));
     }
 	
+	@PostMapping(value = "/empty")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "empty", notes = "empty cart")
+    public BaseApiResponse emptyCart() {
+		cartService.emptyCart();
+		return new BaseApiResponse(true);
+    }
+	
 	@PostMapping(value = "/complete")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "complete", notes = "complete shopping")
-    public BaseApiResponse completeOrCancelShopping() {
-		cartService.completeOrCancelShopping();
+    public BaseApiResponse completeShopping() {
+		cartService.completeShopping();
 		return new BaseApiResponse(true);
     }
 	

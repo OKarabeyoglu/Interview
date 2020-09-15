@@ -72,8 +72,14 @@ public class CartApiControllerTest {
 	}
 	
 	@Test
-	public void testCompleteOrCancelShopping() {
-		BaseApiResponse response = controller.completeOrCancelShopping();
+	public void testEmptyCart() {
+		BaseApiResponse response = controller.emptyCart();
+		assertThat(response).isNotNull();
+	}
+	
+	@Test
+	public void testCompleteShopping() {
+		BaseApiResponse response = controller.completeShopping();
 		assertThat(response).isNotNull();
 	}
 }

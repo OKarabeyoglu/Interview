@@ -4,8 +4,10 @@ import com.trendyol.shoppingcard.dto.CartDTO;
 
 public interface CartService {
 
-	void completeOrCancelShopping();
+	void completeShopping();
 
+	void emptyCart();
+	
 	CartDTO addProductToCart(Long productId, Integer quantity);
 
 	CartDTO removeProductFromCart(Long cartItemId);

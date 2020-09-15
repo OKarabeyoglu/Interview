@@ -43,11 +43,19 @@ public class CartServiceImplTest {
 	}
 
 	@Test
-	public void testCompleteOrCancelCart() {
+	public void testCompleteShopping() {
 		User user = MockDataGenerator.createUserModel();
 		Mockito.when(userRepository.findOneById(2L)).thenReturn(user);
 		Mockito.when(cartRepository.findOneById(user.getCartList().get(0).getId())).thenReturn(new Cart());
-		controller.completeOrCancelShopping();
+		controller.completeShopping();
+	}
+	
+	@Test
+	public void testEmptyCart() {
+		User user = MockDataGenerator.createUserModel();
+		Mockito.when(userRepository.findOneById(2L)).thenReturn(user);
+		Mockito.when(cartRepository.findOneById(user.getCartList().get(0).getId())).thenReturn(new Cart());
+		controller.emptyCart();
 	}
 	
 	@Test

@@ -54,14 +54,25 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void completeOrCancelShopping() {
-		// paid or cart cancelled
+	public void completeShopping() {
+		// paid and complete cart
 		User user = this.getSessionUser();
 		Optional<Cart> cart = user.getCartList().stream().filter(c -> CartStatus.ACTIVE.equals(c.getStatus()))
 				.findFirst();
 		if (cart.isPresent()) {
 			Cart model = cartRepository.findOneById(cart.get().getId());
 			model.setStatus(CartStatus.PASSIVE);
+		}
+	}
+	
+	@Override
+	public void emptyCart() {
+		User user = this.getSessionUser();
+		Optional<Cart> cart = user.getCartList().stream().filter(c -> CartStatus.ACTIVE.equals(c.getStatus()))
+				.findFirst();
+		if (cart.isPresent()) {
+			Cart model = cartRepository.findOneById(cart.get().getId());
+			cartItemRepository.deleteAll(model.getCartItemList());
 		}
 	}
 
@@ -122,6 +133,7 @@ public class CartServiceImpl implements CartService {
 		CartDTO cartDTO = Cart.toDTO(cart);
 		List<CartItem> cartList = cartItemRepository.findAllByCart(cart);
 		List<CartItemDTO>  cartItemDTOList = new ArrayList<>();
+		//amounts calculated dynamically as product prices may change while the product is in the cart
 		for (CartItem cartItem : cartList) {
 			CartItemDTO cartItemDTO = CartItem.toDTO(cartItem);
 			cartItemDTO.setAmount(cartItem.getProduct().getAmount().multiply(new BigDecimal(cartItem.getQuantity())));
