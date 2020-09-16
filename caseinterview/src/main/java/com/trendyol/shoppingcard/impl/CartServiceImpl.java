@@ -10,6 +10,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import com.trendyol.shoppingcard.dto.CartDTO;
 import com.trendyol.shoppingcard.dto.CartItemDTO;
@@ -66,14 +67,19 @@ public class CartServiceImpl implements CartService {
 	}
 	
 	@Override
-	public void emptyCart() {
+	public CartDTO emptyCart() {
 		User user = this.getSessionUser();
 		Optional<Cart> cart = user.getCartList().stream().filter(c -> CartStatus.ACTIVE.equals(c.getStatus()))
 				.findFirst();
+		CartDTO cartDTO = new CartDTO();
 		if (cart.isPresent()) {
 			Cart model = cartRepository.findOneById(cart.get().getId());
+			model.getCartItemList().removeAll(model.getCartItemList());
+			model.setCoupon(null);
 			cartItemRepository.deleteAll(model.getCartItemList());
+			cartDTO = this.calculateCartAmount(model.getId());
 		}
+		return cartDTO;
 	}
 
 	private Cart getActiveCart() {
@@ -175,6 +181,7 @@ public class CartServiceImpl implements CartService {
 	public CartDTO removeProductFromCart(Long cartItemId) {
 		CartItem cartItem = cartItemRepository.findOneById(cartItemId);
 		Long cartId = cartItem.getCart().getId();
+		cartItem.getCart().getCartItemList().remove(cartItem);
 		cartItemRepository.delete(cartItem);
 		return this.calculateCartAmount(cartId);
 	}
@@ -195,11 +202,35 @@ public class CartServiceImpl implements CartService {
 		return this.calculateCartAmount(cartItem.getCart().getId());
 	}
 
+	/*
+		------ SHOPPING CART -----
+		Product: Basic T-shirt  Qty: 4  Price: 200.00 TL
+		Product: Skinny Jeans   Qty: 7  Price: 700.00 TL  Discounted Price: 630.00 TL
+		------ CART SUMMARY -----
+		Total Price: 830.00 TL
+	 */
 	@Override
-	public String showCart(Long cartId) {
-		Cart cart = cartRepository.findOneById(cartId);
-		this.calculateCartAmount(cartId);
-		return "";
+	public CartDTO showCart(Long cartId) {
+		CartDTO cartDTO = this.calculateCartAmount(cartId);
+		StringBuilder sb = new StringBuilder();
+		sb.append("------ SHOPPING CART -----").append(System.getProperty("line.separator"));
+		if(!CollectionUtils.isEmpty(cartDTO.getCartItemList())) {
+			for (CartItemDTO cartItem : cartDTO.getCartItemList()) {
+				sb.append("Product: ").append(cartItem.getProduct().getTitle()).append("  Qty: ").append(cartItem.getQuantity()).append("  Price: ").append(cartItem.getAmount()).append(" TL");
+				// if amount is not equal to discountedAmount, campaign is used
+				if(cartItem.getAmount().compareTo(cartItem.getDiscountedAmount()) != 0) {
+					sb.append("  Discounted Price: ").append(cartItem.getDiscountedAmount()).append(" TL").append(System.getProperty("line.separator"));
+				} else {
+					sb.append(System.getProperty("line.separator"));
+				}
+			}
+			sb.append("------ CART SUMMARY -----").append(System.getProperty("line.separator"));
+			sb.append("Total Price: ").append(cartDTO.getDiscountedAmount()).append(" TL");
+		} else {
+			sb.append(" - ");
+		}
+		System.out.println(sb.toString());
+		return cartDTO;
 	}
 
 }

@@ -1,5 +1,8 @@
 package com.trendyol.shoppingcard.controller;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -43,7 +46,7 @@ public class ProductApiController {
 	@GetMapping(value = "/find/{CATEGORY_ID}", consumes = { MediaType.ALL_VALUE })
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "getProductsByCategoryId", notes = "get products by category id")
-	public ProductListResponse getProductsByCategoryId(
+	public ProductListResponse getProductsByCategoryId(@NotNull @Positive
 			@PathVariable("CATEGORY_ID") Long categoryId) {
 		return new ProductListResponse(productService.getProductsByCategoryId(categoryId));
 	}

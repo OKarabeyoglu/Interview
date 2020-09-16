@@ -13,4 +13,4 @@ INSERT INTO shopping.product (id, create_date, modified_date, amount, currency_c
 INSERT INTO shopping.product (id, create_date, modified_date, amount, currency_code, title, category) VALUES (3, CURRENT_DATE, CURRENT_DATE, 150.00, 'TL', 'Blazer Jacket', 4);
 INSERT INTO shopping.product (id, create_date, modified_date, amount, currency_code, title, category) VALUES (4, CURRENT_DATE, CURRENT_DATE, 800.00, 'TL', 'Wireless Headphone', 6);
 INSERT INTO shopping.coupon (id, create_date, modified_date, discount_amount, discount_type, minimum_cart_amount) VALUES (1, CURRENT_DATE, CURRENT_DATE, 20.00, 'RATE', 200.00);
-INSERT INTO shopping.coupon (id, create_date, modified_date, discount_amount, discount_type, minimum_cart_amount) VALUES (2, CURRENT_DATE, CURRENT_DATE, 100.00, 'AMOUNT', 1000.00);
+INSERT INTO shopping.coupon (id, create_date, modified_date, discount_amount, discount_type, minimum_cart_amount) VALUES (2, CURRENT_DATE, CURRENT_DATE, 100.00, 'AMOUNT', 600.00);

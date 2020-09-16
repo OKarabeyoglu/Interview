@@ -6,7 +6,7 @@ public interface CartService {
 
 	void completeShopping();
 
-	void emptyCart();
+	CartDTO emptyCart();
 	
 	CartDTO addProductToCart(Long productId, Integer quantity);
 
@@ -14,6 +14,6 @@ public interface CartService {
 
 	CartDTO updateProductQuantityOnCart(Long cartItemId, Integer quantity);
 
-	String showCart(Long cartId);
+	CartDTO showCart(Long cartId);
 
 }

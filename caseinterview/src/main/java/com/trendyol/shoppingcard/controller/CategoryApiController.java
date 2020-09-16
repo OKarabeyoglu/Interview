@@ -1,5 +1,8 @@
 package com.trendyol.shoppingcard.controller;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -43,7 +46,7 @@ public class CategoryApiController {
 	@GetMapping(value = "/find/{PARENT_CATEGORY_ID}", consumes = { MediaType.ALL_VALUE })
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "getCategoriesByParentCategory", notes = "get categories by parent category")
-	public CategoryListResponse getCategoriesByParentCategory(
+	public CategoryListResponse getCategoriesByParentCategory(@NotNull @Positive
 			@PathVariable("PARENT_CATEGORY_ID") Long parentCategoryId) {
 		return new CategoryListResponse(categoryService.getCategoriesByParentCategory(parentCategoryId));
 	}

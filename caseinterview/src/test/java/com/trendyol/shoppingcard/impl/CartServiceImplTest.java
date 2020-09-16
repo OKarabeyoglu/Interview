@@ -103,7 +103,7 @@ public class CartServiceImplTest {
 		Mockito.when(cartRepository.findOneById(cartItemList.get(0).getCart().getId())).thenReturn(cartItemList.get(0).getCart());
 		Mockito.when(cartRepository.findOneById(cartItemList.get(0).getCart().getId())).thenReturn(cartItemList.get(0).getCart());
 		Mockito.when(cartItemRepository.findAllByCart(cartItemList.get(0).getCart())).thenReturn(cartItemList);
-		String result = controller.showCart(cartItemList.get(0).getCart().getId());
+		CartDTO result = controller.showCart(cartItemList.get(0).getCart().getId());
 		assertThat(result).isNotNull();
 	}
 }

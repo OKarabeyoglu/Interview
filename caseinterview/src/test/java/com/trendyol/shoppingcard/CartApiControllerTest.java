@@ -13,11 +13,9 @@ import com.trendyol.shoppingcard.generator.MockDataGenerator;
 import com.trendyol.shoppingcard.intf.CartService;
 import com.trendyol.shoppingcard.request.AddProductToChartRequest;
 import com.trendyol.shoppingcard.request.RemoveProductFromChartRequest;
-import com.trendyol.shoppingcard.request.ShowCartRequest;
 import com.trendyol.shoppingcard.request.UpdateProductQuantityOnChartRequest;
 import com.trendyol.shoppingcard.response.BaseApiResponse;
 import com.trendyol.shoppingcard.response.CartResponse;
-import com.trendyol.shoppingcard.response.ShowCartResponse;
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class CartApiControllerTest {
@@ -65,16 +63,14 @@ public class CartApiControllerTest {
 	
 	@Test
 	public void testShowCart() {
-		ShowCartRequest request = new ShowCartRequest();
-		request.setCartId(1L);
-		Mockito.when(cartService.showCart(request.getCartId())).thenReturn("Cart");
-		ShowCartResponse response = controller.showCart(request);
+		Mockito.when(cartService.showCart(1L)).thenReturn(MockDataGenerator.createCartDTO());
+		CartResponse response = controller.showCart(1L);
 		assertThat(response).isNotNull();
 	}
 	
 	@Test
 	public void testEmptyCart() {
-		BaseApiResponse response = controller.emptyCart();
+		CartResponse response = controller.emptyCart();
 		assertThat(response).isNotNull();
 	}
 	
