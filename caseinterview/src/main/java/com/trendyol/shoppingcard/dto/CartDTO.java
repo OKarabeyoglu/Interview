@@ -25,5 +25,7 @@ public class CartDTO extends BaseDTO{
 	private BigDecimal amount = BigDecimal.ZERO;
 	@ApiModelProperty(value = "discountedAmount", dataType = "BigDecimal")
 	private BigDecimal discountedAmount = BigDecimal.ZERO;
+	@ApiModelProperty(value = "discountCouponAmount", dataType = "BigDecimal")
+	private BigDecimal discountCouponAmount = BigDecimal.ZERO;
 
 }

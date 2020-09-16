@@ -2,6 +2,7 @@ package com.trendyol.shoppingcard.impl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Before;
@@ -100,7 +101,9 @@ public class CartServiceImplTest {
 	@Test
 	public void testShowCart() {
 		List<CartItem> cartItemList = MockDataGenerator.createCartItemList();
+		Mockito.when(couponRepository.findByMinimumCartAmountLessThanEqual(new BigDecimal(200))).thenReturn(MockDataGenerator.createCouponModelList());
 		Mockito.when(cartRepository.findOneById(cartItemList.get(0).getCart().getId())).thenReturn(cartItemList.get(0).getCart());
+		Mockito.when(couponRepository.findOneById(MockDataGenerator.createCouponModelList().get(0).getId())).thenReturn(MockDataGenerator.createCouponModelList().get(0));
 		Mockito.when(cartRepository.findOneById(cartItemList.get(0).getCart().getId())).thenReturn(cartItemList.get(0).getCart());
 		Mockito.when(cartItemRepository.findAllByCart(cartItemList.get(0).getCart())).thenReturn(cartItemList);
 		CartDTO result = controller.showCart(cartItemList.get(0).getCart().getId());
