@@ -2,6 +2,8 @@ package com.trendyol.shoppingcard.impl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,9 +38,17 @@ public class CampaignServiceImplTest {
 		assertThat(id).isNotNull();
 	}
 
-	@Test(expected = Exception.class)
+	@Test
 	public void testCreateCampaignDTOIsNull() throws Exception {
 		CampaignDTO campaignDTO = null;
 		controller.createCampaign(campaignDTO);
 	}
+	
+	@Test
+	public void testGetAllCampaigns() throws Exception {
+		Mockito.when(campaignRepository.findAll()).thenReturn(null);
+		List<CampaignDTO> result= controller.getAllCampaigns();
+		assertThat(result).isNotNull();
+	}
+	
 }

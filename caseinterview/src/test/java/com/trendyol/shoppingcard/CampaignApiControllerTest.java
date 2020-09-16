@@ -13,6 +13,7 @@ import com.trendyol.shoppingcard.dto.CampaignDTO;
 import com.trendyol.shoppingcard.generator.MockDataGenerator;
 import com.trendyol.shoppingcard.intf.CampaignService;
 import com.trendyol.shoppingcard.request.CampaignDTORequest;
+import com.trendyol.shoppingcard.response.CampaignListResponse;
 import com.trendyol.shoppingcard.response.SaveResponse;
 
 @RunWith(BlockJUnit4ClassRunner.class)
@@ -35,6 +36,16 @@ public class CampaignApiControllerTest {
 		CampaignDTORequest request = new CampaignDTORequest();
 		request.setCampaignDTO(campaignDTO);
 		SaveResponse response = controller.saveCampaign(request);
+		assertThat(response).isNotNull();
+	}
+	
+	@Test
+	public void testFindAll() {
+		Mockito.when(campaignService.getAllCampaigns()).thenReturn(MockDataGenerator.createCampaignDTOList());
+		CampaignListResponse response = new CampaignListResponse();
+		response.setCampaignDTOList(null);
+		response.getCampaignDTOList();
+		response = controller.findAll();
 		assertThat(response).isNotNull();
 	}
 }

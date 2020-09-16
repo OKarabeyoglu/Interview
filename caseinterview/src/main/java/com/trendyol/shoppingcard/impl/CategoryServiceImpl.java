@@ -1,5 +1,7 @@
 package com.trendyol.shoppingcard.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +25,13 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public Long createCategory(CategoryDTO categoryDTO) {
 		return categoryRepository.save(Category.toModel(categoryDTO)).getId();
+	}
+	
+	@Override
+	public List<CategoryDTO> getCategoriesByParentCategory(Long parentCategoryId){
+		Category parentCategoryModel = categoryRepository.findOneById(parentCategoryId);
+		List<Category> categoryList = categoryRepository.findByParentCategory(parentCategoryModel);
+		return Category.toDTOList(categoryList);
 	}
 
 }

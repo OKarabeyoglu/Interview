@@ -3,6 +3,8 @@ package com.trendyol.shoppingcard.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trendyol.shoppingcard.ApiEndpoints;
 import com.trendyol.shoppingcard.intf.CategoryService;
 import com.trendyol.shoppingcard.request.CategoryDTORequest;
+import com.trendyol.shoppingcard.response.CategoryListResponse;
 import com.trendyol.shoppingcard.response.SaveResponse;
 
 import io.swagger.annotations.Api;
@@ -35,6 +38,14 @@ public class CategoryApiController {
 	@ApiOperation(value = "saveCategory", notes = "save category")
 	public SaveResponse saveCategory(@RequestBody CategoryDTORequest request) {
 		return new SaveResponse(categoryService.createCategory(request.getCategoryDTO()));
+	}
+
+	@GetMapping(value = "/category/{PARENT_CATEGORY_ID}", consumes = { MediaType.ALL_VALUE })
+	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation(value = "saveCategory", notes = "save category")
+	public CategoryListResponse getCategoriesByParentCategory(
+			@PathVariable("PARENT_CATEGORY_ID") Long parentCategoryId) {
+		return new CategoryListResponse(categoryService.getCategoriesByParentCategory(parentCategoryId));
 	}
 
 }

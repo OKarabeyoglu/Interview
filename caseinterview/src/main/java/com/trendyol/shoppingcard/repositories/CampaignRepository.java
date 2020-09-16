@@ -9,4 +9,5 @@ import com.trendyol.shoppingcard.entities.Campaign;
 public interface CampaignRepository extends JpaRepository<Campaign, Long>{
 
 	Campaign findOneById(Long id);
+	
 }

@@ -3,6 +3,7 @@ package com.trendyol.shoppingcard.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trendyol.shoppingcard.ApiEndpoints;
 import com.trendyol.shoppingcard.intf.CampaignService;
 import com.trendyol.shoppingcard.request.CampaignDTORequest;
+import com.trendyol.shoppingcard.response.CampaignListResponse;
 import com.trendyol.shoppingcard.response.SaveResponse;
 
 import io.swagger.annotations.Api;
@@ -35,6 +37,13 @@ public class CampaignApiController {
 	@ApiOperation(value = "saveCampaign", notes = "save campaign")
 	public SaveResponse saveCampaign(@RequestBody CampaignDTORequest request) {
 		return new SaveResponse(campaignService.createCampaign(request.getCampaignDTO()));
+	}
+	
+	@GetMapping(value = "/all", consumes = { MediaType.ALL_VALUE })
+	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation(value = "findAll", notes = "find all campaign")
+	public CampaignListResponse findAll() {
+		return new CampaignListResponse(campaignService.getAllCampaigns());
 	}
 
 }

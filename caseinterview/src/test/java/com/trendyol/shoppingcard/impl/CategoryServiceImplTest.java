@@ -2,6 +2,8 @@ package com.trendyol.shoppingcard.impl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,5 +41,13 @@ public class CategoryServiceImplTest {
 	public void testCreateCategoryDTOIsNull() throws Exception {
 		CategoryDTO categoryDTO = null;
 		controller.createCategory(categoryDTO);
+	}
+	
+	@Test
+	public void testGetCategoriesByParentCategory() {
+		Mockito.when(categoryRepository.findOneById(1L)).thenReturn(MockDataGenerator.createCategory());
+		Mockito.when(categoryRepository.findByParentCategory(MockDataGenerator.createCategory())).thenReturn(null);
+		List<CategoryDTO> result = controller.getCategoriesByParentCategory(1L);
+		assertThat(result).isNotNull();
 	}
 }

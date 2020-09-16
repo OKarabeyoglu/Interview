@@ -68,6 +68,24 @@ public class Category extends BaseEntity<Long>{
 		return modelList;
 	}
 	
+	public static List<CategoryDTO> toDTOList(List<Category> modelList) {
+		List<CategoryDTO> dtoList = new ArrayList<>();
+		if(!CollectionUtils.isEmpty(modelList)) {
+			for (Category model : modelList) {
+				CategoryDTO dto = new CategoryDTO();
+				dto.setId(model.getId());
+				dto.setTitle(model.getTitle());
+				if(model.getParentCategory() != null) {
+					dto.setParentCategory(toDTO(model.getParentCategory()));
+				}
+				dto.setCreateDate(model.getCreateDate());
+				dto.setModifiedDate(model.getModifiedDate());
+				dtoList.add(dto);
+			}
+		}
+		return dtoList;
+	}
+	
 	public static CategoryDTO toDTO(Category model) {
 		CategoryDTO dto = null;
 		if(model != null) {

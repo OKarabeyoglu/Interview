@@ -1,5 +1,7 @@
 package com.trendyol.shoppingcard.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +24,14 @@ public class CampaignServiceImpl implements CampaignService  {
 
 	@Override
 	public Long createCampaign(CampaignDTO campaignDTO) {
-		return campaignRepository.save(Campaign.toModel(campaignDTO)).getId();
+		Campaign model = Campaign.toModel(campaignDTO);
+		return model != null ? campaignRepository.save(Campaign.toModel(campaignDTO)).getId() : null;
+	}
+	
+	@Override
+	public List<CampaignDTO> getAllCampaigns(){
+		List<Campaign> campaignModelList = campaignRepository.findAll();
+		return Campaign.toDTOList(campaignModelList);
 	}
 
 }

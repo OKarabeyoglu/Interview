@@ -55,6 +55,25 @@ public class MockDataGenerator {
 		return campaignDTO;
 	}
 	
+	public static List<CampaignDTO> createCampaignDTOList() {
+		List<CampaignDTO> dtoList = new ArrayList<>();
+		CampaignDTO campaignDTO = new CampaignDTO();
+		List<CategoryDTO> categoryDTOList = new ArrayList<>();
+		CategoryDTO categoryDTO = new CategoryDTO();
+		categoryDTO.setTitle("Clothes");
+		categoryDTO.setParentCategory(null);
+		categoryDTO.setCampaignDTOList(null);
+		categoryDTO.setId(1L);
+		categoryDTOList.add(categoryDTO);
+		campaignDTO.setCategoryDTOList(categoryDTOList);
+		campaignDTO.setDiscountAmount(new BigDecimal(10));
+		campaignDTO.setDiscountType(DiscountType.AMOUNT);
+		campaignDTO.setMinNumberOfProducts(3);
+		campaignDTO.setId(1L);
+		dtoList.add(campaignDTO);
+		return dtoList;
+	}
+	
 	public static UserDTO createUserDTO() {
 		UserDTO userDTO = new UserDTO();
 		userDTO.setId(2L);
@@ -98,6 +117,16 @@ public class MockDataGenerator {
 		categoryDTO.setProductDTOList(null);
 		categoryDTO.setId(1L);
 		return categoryDTO;
+	}
+	
+	public static Category createCategory() {
+		Category category = new Category();
+		category.setTitle("Clothes");
+		category.setParentCategory(null);
+		category.setCampaign(null);
+		category.setProductList(null);
+		category.setId(1L);
+		return category;
 	}
 	
 	public static CouponDTO createCouponDTO() {
