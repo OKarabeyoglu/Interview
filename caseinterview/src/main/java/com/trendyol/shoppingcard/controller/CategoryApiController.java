@@ -40,9 +40,9 @@ public class CategoryApiController {
 		return new SaveResponse(categoryService.createCategory(request.getCategoryDTO()));
 	}
 
-	@GetMapping(value = "/category/{PARENT_CATEGORY_ID}", consumes = { MediaType.ALL_VALUE })
+	@GetMapping(value = "/find/{PARENT_CATEGORY_ID}", consumes = { MediaType.ALL_VALUE })
 	@ResponseStatus(HttpStatus.OK)
-	@ApiOperation(value = "saveCategory", notes = "save category")
+	@ApiOperation(value = "getCategoriesByParentCategory", notes = "get categories by parent category")
 	public CategoryListResponse getCategoriesByParentCategory(
 			@PathVariable("PARENT_CATEGORY_ID") Long parentCategoryId) {
 		return new CategoryListResponse(categoryService.getCategoriesByParentCategory(parentCategoryId));
