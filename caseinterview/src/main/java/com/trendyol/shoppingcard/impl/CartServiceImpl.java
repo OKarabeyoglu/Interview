@@ -216,6 +216,10 @@ public class CartServiceImpl implements CartService, DeliveryCostService {
 	public CartDTO removeProductFromCart(Long cartItemId) {
 		CartItem cartItem = cartItemRepository.findOneById(cartItemId);
 		Long cartId = cartItem.getCart().getId();
+		// if one product in the cart, coupon relation is broken
+		if(cartItem.getCart().getCartItemList().size() == 1) {
+			cartItem.getCart().setCoupon(null);
+		}
 		cartItem.getCart().getCartItemList().remove(cartItem);
 		cartItemRepository.delete(cartItem);
 		return this.calculateCartAmount(cartId);
