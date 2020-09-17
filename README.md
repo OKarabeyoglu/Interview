@@ -23,7 +23,18 @@ MySQL
 
 2- 6.6.1 or higher version of Gradle
 
-3- After the project is imported, gradle refresh should be done.
+3- After the project is imported, gradle refresh should be done. If build gradle operation gets an error about distTar
+
+	-  def targetDir = "/"
+		distTar {
+			into("$targetDir/sql") {
+				from('src/main/resources/sql') {
+					include 'import.sql'
+				}
+			}
+		}  lines removed from build.gradle.
+ -  Then, build gradle again
+ -  After successful build add removed lines and save  build.gradle.
 
 4- Create a shopping database in MySQL.
 
@@ -31,41 +42,9 @@ spring.datasource.url=jdbc:mysql://**localhost:3306/shopping**
 spring.datasource.**username=root**
 spring.datasource.**password=root**
 
-4- It is defined as spring.jpa.hibernate.ddl-auto = create-drop in application.properties. Therefore; when the server starts up with the import.sql file located under the src / main / resources directory, it inserts the user, campaign, category, product and coupon tables. Operation method can be changed by making configuration changes.
+4- It is defined as spring.jpa.hibernate.ddl-auto = create-drop in application.properties. Therefore; when the server starts up with the import.sql file located under the src / main / resources directory, it inserts the user, campaign, category, product and coupon datas into the tables. 
 
-5- After the server up; api list at http: // localhost: 8080 / swagger-ui.html.
-
-
-
-**Class Diagram:**
-
-<img src="C:\Users\OvuncKarabeyoglu\Desktop\classDiagram.jpg" alt="classDiagram" style="zoom: 100%;" />
-
-
-
-
-
-**Entity Relationship Diagram:**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+5- After the server up; the api list can be accessed from http: // localhost: 8080 / swagger-ui.html.
 
 
 
@@ -87,7 +66,7 @@ productId: 1 refers to Skinny Jeans on Product table, with price 100 TL. Skinny 
 
 productId: 4 refers to Wireless Headphone on Product table, with price 800 TL. Wireless Headphone is related to Headphones subcategory.(Headphones sub category related to Electronics category(parent)). Headphones sub category has not a campaign.
 
-**3- showCart** 
+**3- showCart (cartId:1)**
 
 Coupons are defined in the system. System calculates most profitable coupons and use it. Delivery cost and total cart price are calculated dynamically based on product quantity on cart or cart total price.
 
@@ -101,13 +80,13 @@ Total Price: 928.00 TL
 
 **4- removeProductFromCart (cartItemId:3)**
 
-cartItemId:3 refers to added product Wiress Headphone to Shopping Cart. With this service, the product added to the cart is removed.
+cartItemId:3 refers to added product Wiress Headphone to Shopping Cart. With this service, added product in the cart is removed.
 
 **5- updateProductQuantityOnCart(cartItemId:2, quantity:1)**
 
-cartItemId:2 refers to added to product Skinny Jeans to Shopping Cart. With this service, added product quantity can be updatable.  
+cartItemId:2 refers to added to product Skinny Jeans to Shopping Cart. With this service, added product quantity is updated.
 
-**6- showCart** 
+**6- showCart (cartId:1)**
 
 After five operations; only one Skinny Jean left in the cart. Therefore, Campaign usage was not made because the campaign conditions for the added product could not be met. The delivery cost was determined because the terms of the number of items in the cart or the total price of the cart were not met.
 
@@ -119,7 +98,7 @@ Total Price: 108.99 TL
 
 **7- complete or empty**
 
-Empty service removes all items from the basket and breaks relationships.
+Empty service removes all items from the cart and breaks relationships.
 
 Complete service; It is assumed that the payment transaction has been made in the complete service and it completes the customer's active cart process.
 
