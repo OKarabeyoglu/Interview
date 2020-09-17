@@ -63,10 +63,10 @@ public class CartServiceImpl implements CartService, DeliveryCostService {
 	public void completeShopping() {
 		// paid and complete cart
 		User user = this.getSessionUser();
-		Optional<Cart> cart = user.getCartList().stream().filter(c -> CartStatus.ACTIVE.equals(c.getStatus()))
-				.findFirst();
-		if (cart.isPresent()) {
-			Cart model = cartRepository.findOneById(cart.get().getId());
+		Cart cart = user.getCartList().stream().filter(c -> CartStatus.ACTIVE.equals(c.getStatus()))
+				.findFirst().orElse(null);
+		if (cart != null && cart.getId() != null) {
+			Cart model = cartRepository.findOneById(cart.getId());
 			model.setStatus(CartStatus.PASSIVE);
 		}
 	}
@@ -74,11 +74,11 @@ public class CartServiceImpl implements CartService, DeliveryCostService {
 	@Override
 	public CartDTO emptyCart() {
 		User user = this.getSessionUser();
-		Optional<Cart> cart = user.getCartList().stream().filter(c -> CartStatus.ACTIVE.equals(c.getStatus()))
-				.findFirst();
+		Cart cart = user.getCartList().stream().filter(c -> CartStatus.ACTIVE.equals(c.getStatus()))
+				.findFirst().orElse(null);
 		CartDTO cartDTO = new CartDTO();
-		if (cart.isPresent()) {
-			Cart model = cartRepository.findOneById(cart.get().getId());
+		if (cart != null && cart.getId() != null) {
+			Cart model = cartRepository.findOneById(cart.getId());
 			model.getCartItemList().removeAll(model.getCartItemList());
 			model.setCoupon(null);
 			cartItemRepository.deleteAll(model.getCartItemList());
@@ -90,11 +90,11 @@ public class CartServiceImpl implements CartService, DeliveryCostService {
 	private Cart getActiveCart() {
 		Cart activeCart = null;
 		User user = this.getSessionUser();
-		Optional<Cart> cart = user.getCartList().stream().filter(c -> CartStatus.ACTIVE.equals(c.getStatus()))
-				.findFirst();
+		Cart cart = user.getCartList().stream().filter(c -> CartStatus.ACTIVE.equals(c.getStatus()))
+				.findFirst().orElse(null);
 		// if user's active cart exists, use it, else new cart created
-		if (cart.isPresent() && cart.get().getId() != null) {
-			activeCart = cartRepository.findOneById(cart.get().getId());
+		if (cart != null && cart.getId() != null) {
+			activeCart = cartRepository.findOneById(cart.getId());
 		} else {
 			Cart model = new Cart();
 			model.setCreateDate(LocalDate.now());
@@ -191,13 +191,13 @@ public class CartServiceImpl implements CartService, DeliveryCostService {
 	public CartDTO addProductToCart(Long productId, Integer quantity) {
 		Cart userCart = this.getActiveCart();
 		CartItem currentCartItem;
-		Optional<CartItem> cartItem = userCart.getCartItemList().stream()
-				.filter(c -> c.getProduct().getId().equals(productId)).findFirst();
+		CartItem cartItem = userCart.getCartItemList().stream()
+				.filter(c -> c.getProduct().getId().equals(productId)).findFirst().orElse(null);
 		// if product has already added to cartItem, so product quantity is increased
 		// otherwise new cart item created
-		if (cartItem.isPresent()) {
-			Integer updatedProductQuantity = cartItem.get().getQuantity() + quantity;
-			currentCartItem = cartItemRepository.findOneById(cartItem.get().getId());
+		if (cartItem != null && cartItem.getId() != null) {
+			Integer updatedProductQuantity = cartItem.getQuantity() + quantity;
+			currentCartItem = cartItemRepository.findOneById(cartItem.getId());
 			currentCartItem.setQuantity(updatedProductQuantity);
 		} else {
 			CartItem newCartItem = new CartItem();

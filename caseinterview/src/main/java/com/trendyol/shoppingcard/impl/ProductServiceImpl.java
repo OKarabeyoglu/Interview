@@ -1,18 +1,22 @@
 package com.trendyol.shoppingcard.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.trendyol.shoppingcard.dto.ProductDTO;
 import com.trendyol.shoppingcard.entities.Category;
 import com.trendyol.shoppingcard.entities.Product;
+import com.trendyol.shoppingcard.exception.BusinessValidationException;
 import com.trendyol.shoppingcard.intf.ProductService;
 import com.trendyol.shoppingcard.repositories.CategoryRepository;
 import com.trendyol.shoppingcard.repositories.ProductRepository;
+import com.trendyol.shoppingcard.util.ShoppingCartBusinessValidationRule;
 
 @Transactional
 @Service
@@ -26,9 +30,22 @@ public class ProductServiceImpl implements ProductService {
 		this.productRepository = productRepository;
 		this.categoryRepository = categoryRepository;
 	}
+	
+	private void validateCreate(ProductDTO productDTO) {
+		if(productDTO.getAmount() == null || productDTO.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
+			throw new BusinessValidationException(ShoppingCartBusinessValidationRule.PRODUCT_AMOUNT_REQUIRED_ERROR);
+		}
+		if(StringUtils.isEmpty(productDTO.getTitle())) {
+			throw new BusinessValidationException(ShoppingCartBusinessValidationRule.PRODUCT_TITLE_REQUIRED_ERROR);
+		}
+		if(StringUtils.isEmpty(productDTO.getCurrencyCode())) {
+			throw new BusinessValidationException(ShoppingCartBusinessValidationRule.PRODUCT_CURRENCY_REQUIRED_ERROR);
+		}
+	}
 
 	@Override
 	public Long createProduct(ProductDTO productDTO)  {
+		this.validateCreate(productDTO);
 		return productRepository.save(Product.toModel(productDTO)).getId();
 	}
 	

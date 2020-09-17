@@ -7,7 +7,7 @@
 Spring Boot 2.2.3
 Java 8
 Gradle 6.6.1
-Javax validations
+Javax Validations
 Lombok
 Junit
 AssertJ
@@ -39,7 +39,7 @@ spring.datasource.**password=root**
 
 **Class Diagram:**
 
-<img src="C:\Users\OvuncKarabeyoglu\Desktop\classDiagram.jpg" alt="classDiagram" style="zoom:100%;" />
+<img src="C:\Users\OvuncKarabeyoglu\Desktop\classDiagram.jpg" alt="classDiagram" style="zoom: 100%;" />
 
 
 
@@ -79,19 +79,49 @@ Now, user, campaign, category, product and coupon tables are created with data. 
 
 ![cart-swagger](C:\Users\OvuncKarabeyoglu\Desktop\trndy\cart-swagger.JPG)
 
-1- addProductToCart 
+**1- addProductToCart (productId:2, quantity:4)**
 
-2- addProductToCart 
+productId: 1 refers to Skinny Jeans on Product table, with price 100 TL. Skinny Jeans is related to Jeans subcategory.(Jeans sub category related to Clothes category(parent)). Jeans sub category has a campaign (mininum quantity: 3 %10 discount rate).
 
-3- showCart 
+**2- addProductToCart (productId:4, quantity:1)**
 
-4- removeProductFromCart 
+productId: 4 refers to Wireless Headphone on Product table, with price 800 TL. Wireless Headphone is related to Headphones subcategory.(Headphones sub category related to Electronics category(parent)). Headphones sub category has not a campaign.
 
-5- removeProductFromCart 
+**3- showCart** 
 
-6- updateProductQuantityOnCart
+Coupons are defined in the system. System calculates most profitable coupons and use it. Delivery cost and total cart price are calculated dynamically based on product quantity on cart or cart total price.
 
-7- showCart 
+------ SHOPPING CART ------
+Product: Skinny Jeans                Qty: 4  Price: 400.00 TL  Discounted Price: 360.00 TL
+Product: Wireless Headphone  Qty: 1  Price: 800.00 TL
+Coupon Discount Amount: -232.00 TL
+Delivery Cost: 0 TL
+------ CART SUMMARY ------
+Total Price: 928.00 TL
 
-8- complete or empty
+**4- removeProductFromCart (cartItemId:3)**
+
+cartItemId:3 refers to added product Wiress Headphone to Shopping Cart. With this service, the product added to the cart is removed.
+
+**5- updateProductQuantityOnCart(cartItemId:2, quantity:1)**
+
+cartItemId:2 refers to added to product Skinny Jeans to Shopping Cart. With this service, added product quantity can be updatable.  
+
+**6- showCart** 
+
+After five operations; only one Skinny Jean left in the cart. Therefore, Campaign usage was not made because the campaign conditions for the added product could not be met. The delivery cost was determined because the terms of the number of items in the cart or the total price of the cart were not met.
+
+------ SHOPPING CART ------
+Product: Skinny Jeans  Qty: 1  Price: 100.00 TL
+Delivery Cost: 8.99 TL
+------ CART SUMMARY ------
+Total Price: 108.99 TL
+
+**7- complete or empty**
+
+Empty service removes all items from the basket and breaks relationships.
+
+Complete service; It is assumed that the payment transaction has been made in the complete service and it completes the customer's active cart process.
+
+
 

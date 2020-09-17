@@ -1,5 +1,6 @@
 package com.trendyol.shoppingcard.controller;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -39,14 +40,14 @@ public class CategoryApiController {
 	@PostMapping(value = "/save")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "saveCategory", notes = "save category")
-	public SaveResponse saveCategory(@RequestBody @NotNull CategoryDTORequest request) {
+	public SaveResponse saveCategory(@RequestBody @Valid @NotNull CategoryDTORequest request) {
 		return new SaveResponse(categoryService.createCategory(request.getCategoryDTO()));
 	}
 
 	@GetMapping(value = "/find/{PARENT_CATEGORY_ID}", consumes = { MediaType.ALL_VALUE })
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "getCategoriesByParentCategory", notes = "get categories by parent category")
-	public CategoryListResponse getCategoriesByParentCategory(@NotNull @Positive
+	public CategoryListResponse getCategoriesByParentCategory(@NotNull @Valid @Positive
 			@PathVariable("PARENT_CATEGORY_ID") Long parentCategoryId) {
 		return new CategoryListResponse(categoryService.getCategoriesByParentCategory(parentCategoryId));
 	}

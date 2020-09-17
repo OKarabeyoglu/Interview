@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Index;
+import javax.persistence.Table;
 
 import org.springframework.util.CollectionUtils;
 
@@ -16,6 +18,7 @@ import com.trendyol.shoppingcard.util.DiscountType;
 import lombok.Getter;
 import lombok.Setter;
 
+@Table(name = "Coupon", indexes = { @Index(name = "MINIMUM_CART_AMOUNT_INDEX_0", columnList = "minimumCartAmount") })
 @Entity
 @Getter
 @Setter

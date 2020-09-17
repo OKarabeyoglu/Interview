@@ -1,5 +1,6 @@
 package com.trendyol.shoppingcard.controller;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -41,14 +42,14 @@ public class CartApiController {
 	@PostMapping(value = "/add/product")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "addProductToCart", notes = "add product to cart")
-	public CartResponse addProductToCart(@RequestBody @NotNull AddProductToChartRequest request) {
+	public CartResponse addProductToCart(@RequestBody @Valid @NotNull AddProductToChartRequest request) {
 		return new CartResponse(cartService.addProductToCart(request.getProductId(), request.getQuantity()));
 	}
 
 	@PostMapping(value = "/remove/product")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "removeProductFromCart", notes = "remove product from cart")
-	public CartResponse removeProductFromCart(@RequestBody @NotNull RemoveProductFromChartRequest request) {
+	public CartResponse removeProductFromCart(@RequestBody @Valid @NotNull RemoveProductFromChartRequest request) {
 		return new CartResponse(cartService.removeProductFromCart(request.getCartItemId()));
 	}
 

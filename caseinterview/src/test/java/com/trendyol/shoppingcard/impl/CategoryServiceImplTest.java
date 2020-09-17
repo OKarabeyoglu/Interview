@@ -46,7 +46,7 @@ public class CategoryServiceImplTest {
 	@Test
 	public void testGetCategoriesByParentCategory() {
 		Mockito.when(categoryRepository.findOneById(1L)).thenReturn(MockDataGenerator.createCategory());
-		Mockito.when(categoryRepository.findByParentCategory(MockDataGenerator.createCategory())).thenReturn(null);
+		Mockito.when(categoryRepository.findByParentCategory(MockDataGenerator.createCategory())).thenReturn(Mockito.anyList());
 		List<CategoryDTO> result = controller.getCategoriesByParentCategory(1L);
 		assertThat(result).isNotNull();
 	}

@@ -45,8 +45,15 @@ public class CampaignServiceImplTest {
 	}
 	
 	@Test
-	public void testGetAllCampaigns() throws Exception {
+	public void testGetAllCampaignsReturnNull() throws Exception {
 		Mockito.when(campaignRepository.findAll()).thenReturn(null);
+		List<CampaignDTO> result= controller.getAllCampaigns();
+		assertThat(result).isNotNull();
+	}
+	
+	@Test
+	public void testGetAllCampaigns() throws Exception {
+		Mockito.when(campaignRepository.findAll()).thenReturn(MockDataGenerator.toCampaignModelList());
 		List<CampaignDTO> result= controller.getAllCampaigns();
 		assertThat(result).isNotNull();
 	}

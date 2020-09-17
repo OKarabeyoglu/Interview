@@ -1,5 +1,6 @@
 package com.trendyol.shoppingcard.controller;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class CampaignApiController {
 	@PostMapping(value = "/save")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "saveCampaign", notes = "save campaign")
-	public SaveResponse saveCampaign(@RequestBody @NotNull CampaignDTORequest request) {
+	public SaveResponse saveCampaign(@RequestBody @Valid @NotNull CampaignDTORequest request) {
 		return new SaveResponse(campaignService.createCampaign(request.getCampaignDTO()));
 	}
 	

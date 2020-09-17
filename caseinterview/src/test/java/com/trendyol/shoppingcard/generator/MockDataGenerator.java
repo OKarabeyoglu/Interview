@@ -1,6 +1,7 @@
 package com.trendyol.shoppingcard.generator;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import com.trendyol.shoppingcard.dto.CategoryDTO;
 import com.trendyol.shoppingcard.dto.CouponDTO;
 import com.trendyol.shoppingcard.dto.ProductDTO;
 import com.trendyol.shoppingcard.dto.UserDTO;
+import com.trendyol.shoppingcard.entities.Campaign;
 import com.trendyol.shoppingcard.entities.Cart;
 import com.trendyol.shoppingcard.entities.CartItem;
 import com.trendyol.shoppingcard.entities.Category;
@@ -27,17 +29,17 @@ import com.trendyol.shoppingcard.util.CartStatus;
 import com.trendyol.shoppingcard.util.DiscountType;
 
 public class MockDataGenerator {
-	
+
 	public List<Class<? extends Object>> createFeeRateManagementApiClasses() {
-        List<Class<? extends Object>> classes = new ArrayList<>();
-        classes.add(ProductService.class);
-        classes.add(CategoryService.class);
-        classes.add(CampaignService.class);
-        classes.add(CouponService.class);
-        classes.add(CartService.class);
-        return classes;
-    }
-	
+		List<Class<? extends Object>> classes = new ArrayList<>();
+		classes.add(ProductService.class);
+		classes.add(CategoryService.class);
+		classes.add(CampaignService.class);
+		classes.add(CouponService.class);
+		classes.add(CartService.class);
+		return classes;
+	}
+
 	public static CampaignDTO createCampaignDTO() {
 		CampaignDTO campaignDTO = new CampaignDTO();
 		List<CategoryDTO> categoryDTOList = new ArrayList<>();
@@ -54,7 +56,7 @@ public class MockDataGenerator {
 		campaignDTO.setId(1L);
 		return campaignDTO;
 	}
-	
+
 	public static List<CampaignDTO> createCampaignDTOList() {
 		List<CampaignDTO> dtoList = new ArrayList<>();
 		CampaignDTO campaignDTO = new CampaignDTO();
@@ -73,7 +75,7 @@ public class MockDataGenerator {
 		dtoList.add(campaignDTO);
 		return dtoList;
 	}
-	
+
 	public static UserDTO createUserDTO() {
 		UserDTO userDTO = new UserDTO();
 		userDTO.setId(2L);
@@ -88,7 +90,7 @@ public class MockDataGenerator {
 		userDTO.setCartDTOList(cartDTOList);
 		return userDTO;
 	}
-	
+
 	public static User createUserModel() {
 		User model = new User();
 		model.setId(2L);
@@ -109,26 +111,31 @@ public class MockDataGenerator {
 		return model;
 	}
 	
+
 	public static CategoryDTO createCategoryDTO() {
 		CategoryDTO categoryDTO = new CategoryDTO();
 		categoryDTO.setTitle("Clothes");
 		categoryDTO.setParentCategory(null);
-		categoryDTO.setCampaignDTOList(null);
-		categoryDTO.setProductDTOList(null);
+		categoryDTO.setCampaignDTOList(createCampaignDTOList());
+		List<ProductDTO> productDTOList = new ArrayList<>();
+		productDTOList.add(createProductDTO());
+		categoryDTO.setProductDTOList(productDTOList);
 		categoryDTO.setId(1L);
 		return categoryDTO;
 	}
-	
+
 	public static Category createCategory() {
 		Category category = new Category();
 		category.setTitle("Clothes");
 		category.setParentCategory(null);
 		category.setCampaign(null);
-		category.setProductList(null);
+		List<Product> productList = new ArrayList<>();
+		productList.add(createProduct());
+		category.setProductList(productList);
 		category.setId(1L);
 		return category;
 	}
-	
+
 	public static CouponDTO createCouponDTO() {
 		CouponDTO couponDTO = new CouponDTO();
 		couponDTO.setCreateDate(LocalDate.now());
@@ -139,7 +146,7 @@ public class MockDataGenerator {
 		couponDTO.setId(1L);
 		return couponDTO;
 	}
-	
+
 	public static Coupon createCouponModel() {
 		Coupon model = new Coupon();
 		model.setCreateDate(LocalDate.now());
@@ -150,13 +157,13 @@ public class MockDataGenerator {
 		model.setDiscountType(DiscountType.AMOUNT);
 		return model;
 	}
-	
-	public static List<Coupon> createCouponModelList(){
+
+	public static List<Coupon> createCouponModelList() {
 		List<Coupon> modelList = new ArrayList<Coupon>();
 		modelList.add(createCouponModel());
 		return modelList;
 	}
-	
+
 	public static ProductDTO createProductDTO() {
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setAmount(new BigDecimal(100));
@@ -170,7 +177,7 @@ public class MockDataGenerator {
 		productDTO.setId(1L);
 		return productDTO;
 	}
-	
+
 	public static Product createProduct() {
 		Product product = new Product();
 		product.setAmount(new BigDecimal(100));
@@ -184,8 +191,8 @@ public class MockDataGenerator {
 		product.setId(1L);
 		return product;
 	}
-	
-	public static List<CartItem> createCartItemList(){
+
+	public static List<CartItem> createCartItemList() {
 		List<CartItem> modelList = new ArrayList<>();
 		CartItem model = new CartItem();
 		model.setCart(createDefaultCart());
@@ -196,7 +203,7 @@ public class MockDataGenerator {
 		modelList.add(model);
 		return modelList;
 	}
-	
+
 	public static Cart createDefaultCart() {
 		Cart cart = new Cart();
 		cart.setId(1L);
@@ -209,7 +216,7 @@ public class MockDataGenerator {
 		cart.setCartItemList(cartItemList);
 		return cart;
 	}
-	
+
 	public static Cart createAddedCart() {
 		Cart cart = new Cart();
 		cart.setId(1L);
@@ -222,7 +229,7 @@ public class MockDataGenerator {
 		cart.setCartItemList(cartItemList);
 		return cart;
 	}
-	
+
 	public static CartDTO createCartDTO() {
 		CartDTO cartDTO = new CartDTO();
 		cartDTO.setId(1L);
@@ -236,4 +243,19 @@ public class MockDataGenerator {
 		return cartDTO;
 	}
 
+	public static List<Campaign> toCampaignModelList() {
+		List<Campaign> modelList = new ArrayList<Campaign>();
+		Campaign model = new Campaign();
+		model.setId(1L);
+		model.setCreateDate(LocalDate.now());
+		model.setModifiedDate(LocalDate.now());
+		model.setDiscountAmount(new BigDecimal(10).setScale(2, RoundingMode.HALF_UP));
+		model.setDiscountType(DiscountType.RATE);
+		List<Category> categoryList = new ArrayList<>();
+		categoryList.add(createCategory());
+		model.setCategoryList(categoryList);
+		model.setMinimumProductCount(3);
+		modelList.add(model);
+		return modelList;
+	}
 }
