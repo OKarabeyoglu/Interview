@@ -32,7 +32,9 @@ MySQL
 					include 'import.sql'
 				}
 			}
-		}  lines removed from build.gradle.
+		}  
+lines removed from build.gradle.
+
  -  Then, build gradle again
  -  After successful build add removed lines and save  build.gradle.
 
