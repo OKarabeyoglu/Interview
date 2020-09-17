@@ -61,21 +61,19 @@ lines removed from build.gradle.
 
 **ER Diagram**
 
-
-
-![ER Diagram](C:\eclipse\workspace\personal\Interview\ER Diagram.jpg)
+![https://github.com/OKarabeyoglu/Interview/blob/master/ER%20Diagram.jpg](C:\eclipse\workspace\personal\Interview\ER Diagram.jpg)
 
 
 
 **Simple Example:**
 
-![swagger-ui-default](C:\eclipse\workspace\personal\Interview\swagger-ui-default.JPG)
+![https://github.com/OKarabeyoglu/Interview/blob/master/swagger-ui-default.JPG](C:\eclipse\workspace\personal\Interview\swagger-ui-default.JPG)
 
 User, campaign, category, product and coupon have a api controller to make their own operations. (add, get etc.) Classes within the controller can be expanded and more features can be added.
 
 Now, user, campaign, category, product and coupon tables are created with data. So, ready to cart operations. 
 
-![CartApiController-swagger](C:\eclipse\workspace\personal\Interview\CartApiController-swagger.JPG)
+![https://github.com/OKarabeyoglu/Interview/blob/master/CartApiController-swagger.JPG](C:\eclipse\workspace\personal\Interview\CartApiController-swagger.JPG)
 
 **1- addProductToCart (productId:2, quantity:4)**
 
