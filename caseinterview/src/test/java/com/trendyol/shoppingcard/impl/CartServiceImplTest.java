@@ -3,7 +3,6 @@ package com.trendyol.shoppingcard.impl;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -23,7 +22,6 @@ import com.trendyol.shoppingcard.repositories.CartRepository;
 import com.trendyol.shoppingcard.repositories.CouponRepository;
 import com.trendyol.shoppingcard.repositories.ProductRepository;
 import com.trendyol.shoppingcard.repositories.UserRepository;
-import com.trendyol.shoppingcard.util.CartStatus;
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class CartServiceImplTest {
