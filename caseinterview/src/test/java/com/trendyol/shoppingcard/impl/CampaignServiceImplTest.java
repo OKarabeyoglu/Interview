@@ -10,11 +10,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.mockito.Mockito;
 
+import com.trendyol.shoppingcard.domain.Campaign;
 import com.trendyol.shoppingcard.dto.CampaignDTO;
-import com.trendyol.shoppingcard.entities.Campaign;
 import com.trendyol.shoppingcard.generator.MockDataGenerator;
 import com.trendyol.shoppingcard.intf.CampaignService;
-import com.trendyol.shoppingcard.repositories.CampaignRepository;
+import com.trendyol.shoppingcard.repository.CampaignRepository;
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class CampaignServiceImplTest {

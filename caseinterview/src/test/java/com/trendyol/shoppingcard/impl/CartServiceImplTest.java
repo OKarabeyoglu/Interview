@@ -11,17 +11,17 @@ import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.mockito.Mockito;
 
+import com.trendyol.shoppingcard.domain.Cart;
+import com.trendyol.shoppingcard.domain.CartItem;
+import com.trendyol.shoppingcard.domain.User;
 import com.trendyol.shoppingcard.dto.CartDTO;
-import com.trendyol.shoppingcard.entities.Cart;
-import com.trendyol.shoppingcard.entities.CartItem;
-import com.trendyol.shoppingcard.entities.User;
 import com.trendyol.shoppingcard.generator.MockDataGenerator;
 import com.trendyol.shoppingcard.intf.CartService;
-import com.trendyol.shoppingcard.repositories.CartItemRepository;
-import com.trendyol.shoppingcard.repositories.CartRepository;
-import com.trendyol.shoppingcard.repositories.CouponRepository;
-import com.trendyol.shoppingcard.repositories.ProductRepository;
-import com.trendyol.shoppingcard.repositories.UserRepository;
+import com.trendyol.shoppingcard.repository.CartItemRepository;
+import com.trendyol.shoppingcard.repository.CartRepository;
+import com.trendyol.shoppingcard.repository.CouponRepository;
+import com.trendyol.shoppingcard.repository.ProductRepository;
+import com.trendyol.shoppingcard.repository.UserRepository;
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class CartServiceImplTest {

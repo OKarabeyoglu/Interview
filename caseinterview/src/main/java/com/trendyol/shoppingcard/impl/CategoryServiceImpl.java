@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.trendyol.shoppingcard.domain.Category;
 import com.trendyol.shoppingcard.dto.CategoryDTO;
-import com.trendyol.shoppingcard.entities.Category;
 import com.trendyol.shoppingcard.intf.CategoryService;
-import com.trendyol.shoppingcard.repositories.CategoryRepository;
+import com.trendyol.shoppingcard.repository.CategoryRepository;
 
 @Transactional
 @Service

@@ -8,7 +8,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @SpringBootApplication
-@EntityScan("com.trendyol.shoppingcard.entities")
+@EntityScan("com.trendyol.shoppingcard.domain")
 @EnableSwagger2
 public class CaseinterviewApplication {
 

@@ -10,11 +10,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.mockito.Mockito;
 
+import com.trendyol.shoppingcard.domain.Coupon;
 import com.trendyol.shoppingcard.dto.CouponDTO;
-import com.trendyol.shoppingcard.entities.Coupon;
 import com.trendyol.shoppingcard.generator.MockDataGenerator;
 import com.trendyol.shoppingcard.intf.CouponService;
-import com.trendyol.shoppingcard.repositories.CouponRepository;
+import com.trendyol.shoppingcard.repository.CouponRepository;
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class CouponServiceImplTest {

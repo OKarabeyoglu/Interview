@@ -10,11 +10,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.mockito.Mockito;
 
+import com.trendyol.shoppingcard.domain.Category;
 import com.trendyol.shoppingcard.dto.CategoryDTO;
-import com.trendyol.shoppingcard.entities.Category;
 import com.trendyol.shoppingcard.generator.MockDataGenerator;
 import com.trendyol.shoppingcard.intf.CategoryService;
-import com.trendyol.shoppingcard.repositories.CategoryRepository;
+import com.trendyol.shoppingcard.repository.CategoryRepository;
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class CategoryServiceImplTest {

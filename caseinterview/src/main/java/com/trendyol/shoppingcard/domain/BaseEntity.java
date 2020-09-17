@@ -1,4 +1,4 @@
-package com.trendyol.shoppingcard.entities;
+package com.trendyol.shoppingcard.domain;
 
 import java.io.Serializable;
 

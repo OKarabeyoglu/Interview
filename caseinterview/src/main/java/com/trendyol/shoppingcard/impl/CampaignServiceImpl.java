@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.trendyol.shoppingcard.domain.Campaign;
 import com.trendyol.shoppingcard.dto.CampaignDTO;
-import com.trendyol.shoppingcard.entities.Campaign;
 import com.trendyol.shoppingcard.intf.CampaignService;
-import com.trendyol.shoppingcard.repositories.CampaignRepository;
+import com.trendyol.shoppingcard.repository.CampaignRepository;
 
 @Transactional
 @Service

@@ -11,13 +11,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.mockito.Mockito;
 
+import com.trendyol.shoppingcard.domain.Product;
 import com.trendyol.shoppingcard.dto.ProductDTO;
-import com.trendyol.shoppingcard.entities.Product;
 import com.trendyol.shoppingcard.exception.BusinessValidationException;
 import com.trendyol.shoppingcard.generator.MockDataGenerator;
 import com.trendyol.shoppingcard.intf.ProductService;
-import com.trendyol.shoppingcard.repositories.CategoryRepository;
-import com.trendyol.shoppingcard.repositories.ProductRepository;
+import com.trendyol.shoppingcard.repository.CategoryRepository;
+import com.trendyol.shoppingcard.repository.ProductRepository;
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class ProductServiceImplTest {

@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import com.trendyol.shoppingcard.domain.Category;
+import com.trendyol.shoppingcard.domain.Product;
 import com.trendyol.shoppingcard.dto.ProductDTO;
-import com.trendyol.shoppingcard.entities.Category;
-import com.trendyol.shoppingcard.entities.Product;
 import com.trendyol.shoppingcard.exception.BusinessValidationException;
 import com.trendyol.shoppingcard.intf.ProductService;
-import com.trendyol.shoppingcard.repositories.CategoryRepository;
-import com.trendyol.shoppingcard.repositories.ProductRepository;
+import com.trendyol.shoppingcard.repository.CategoryRepository;
+import com.trendyol.shoppingcard.repository.ProductRepository;
 import com.trendyol.shoppingcard.util.ShoppingCartBusinessValidationRule;
 
 @Transactional

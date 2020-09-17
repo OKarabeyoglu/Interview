@@ -1,12 +1,12 @@
-package com.trendyol.shoppingcard.repositories;
+package com.trendyol.shoppingcard.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.trendyol.shoppingcard.entities.Cart;
-import com.trendyol.shoppingcard.entities.CartItem;
+import com.trendyol.shoppingcard.domain.Cart;
+import com.trendyol.shoppingcard.domain.CartItem;
 
 @Repository
 public interface CartItemRepository extends JpaRepository<CartItem, Long>{
