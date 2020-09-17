@@ -61,7 +61,7 @@ lines removed from build.gradle.
 
 **ER Diagram**
 
-![https://github.com/OKarabeyoglu/Interview/blob/master/ER_Diagram.jpg](C:\eclipse\workspace\personal\Interview\ER Diagram.jpg)
+![https://github.com/OKarabeyoglu/Interview/blob/master/ER_Diagram.jpg](C:\eclipse\workspace\personal\Interview\ER_Diagram.jpg)
 
 
 
