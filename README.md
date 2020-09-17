@@ -22,7 +22,7 @@ Mockito
 
 Swagger
 
-MySQ
+MySQL
 
 **Prerequisites:**
 
@@ -61,19 +61,17 @@ lines removed from build.gradle.
 
 **ER Diagram**
 
-![https://github.com/OKarabeyoglu/Interview/blob/master/ER_Diagram.jpg](C:\eclipse\workspace\personal\Interview\ER_Diagram.jpg)
-
-
+![ERDiagram](/.github/ER_Diagram.jpg)
 
 **Simple Example:**
 
-![https://github.com/OKarabeyoglu/Interview/blob/master/swagger-ui-default.JPG](C:\eclipse\workspace\personal\Interview\swagger-ui-default.JPG)
+![SwaggerUI](/.github/swagger-ui-default.JPG)
 
 User, campaign, category, product and coupon have a api controller to make their own operations. (add, get etc.) Classes within the controller can be expanded and more features can be added.
 
 Now, user, campaign, category, product and coupon tables are created with data. So, ready to cart operations. 
 
-![https://github.com/OKarabeyoglu/Interview/blob/master/CartApiController-swagger.JPG](C:\eclipse\workspace\personal\Interview\CartApiController-swagger.JPG)
+![CartApiController-swaggerUI](/.github/CartApiController-swagger.JPG)
 
 **1- addProductToCart (productId:2, quantity:4)**
 
