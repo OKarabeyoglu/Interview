@@ -11,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -34,7 +33,7 @@ public class Cart extends BaseEntity<Long> {
 	@OneToMany(mappedBy = "cart", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<CartItem> cartItemList = new ArrayList<>();
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "coupon")
 	private Coupon coupon;
 	@ManyToOne(fetch = FetchType.LAZY)

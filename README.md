@@ -48,6 +48,14 @@ spring.datasource.**password=root**
 
 
 
+**ER Diagram**
+
+![ER](C:\Users\OvuncKarabeyoglu\Desktop\ER.jpg)
+
+
+
+
+
 **Simple Example:**
 
 ![swagger-ui-default](C:\Users\OvuncKarabeyoglu\Desktop\trndy\swagger-ui-default.JPG)
