@@ -1,5 +1,7 @@
 package com.trendyol.shoppingcard.controller;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,7 +35,7 @@ private CouponService couponService;
 	@PostMapping(value = "/save")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "saveCoupon", notes = "save coupon")
-    public SaveResponse saveCoupon(@RequestBody CouponDTORequest request) {
+    public SaveResponse saveCoupon(@RequestBody @NotNull CouponDTORequest request) {
         return new SaveResponse(couponService.createCoupon(request.getCouponDTO()));
     }
 

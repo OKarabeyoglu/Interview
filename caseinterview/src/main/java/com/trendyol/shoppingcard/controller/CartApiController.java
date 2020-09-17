@@ -41,21 +41,21 @@ public class CartApiController {
 	@PostMapping(value = "/add/product")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "addProductToCart", notes = "add product to cart")
-	public CartResponse addProductToCart(@RequestBody AddProductToChartRequest request) {
+	public CartResponse addProductToCart(@RequestBody @NotNull AddProductToChartRequest request) {
 		return new CartResponse(cartService.addProductToCart(request.getProductId(), request.getQuantity()));
 	}
 
 	@PostMapping(value = "/remove/product")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "removeProductFromCart", notes = "remove product from cart")
-	public CartResponse removeProductFromCart(@RequestBody RemoveProductFromChartRequest request) {
+	public CartResponse removeProductFromCart(@RequestBody @NotNull RemoveProductFromChartRequest request) {
 		return new CartResponse(cartService.removeProductFromCart(request.getCartItemId()));
 	}
 
 	@PostMapping(value = "/update/product/quantity")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "updateProductQuantityOnCart", notes = "update product quantity on cart")
-	public CartResponse updateProductQuantityOnCart(@RequestBody UpdateProductQuantityOnChartRequest request) {
+	public CartResponse updateProductQuantityOnCart(@RequestBody @NotNull UpdateProductQuantityOnChartRequest request) {
 		return new CartResponse(
 				cartService.updateProductQuantityOnCart(request.getCartItemId(), request.getQuantity()));
 	}

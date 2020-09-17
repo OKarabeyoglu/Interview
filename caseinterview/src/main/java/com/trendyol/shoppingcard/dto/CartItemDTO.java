@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CartItemDTO {
+public class CartItemDTO extends BaseDTO{
 	@ApiModelProperty(value = "quantity", dataType = "Integer")
 	private Integer quantity;
 	@ApiModelProperty(value = "product", dataType = "Product")

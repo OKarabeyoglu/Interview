@@ -1,5 +1,7 @@
 package com.trendyol.shoppingcard.controller;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,7 +37,7 @@ public class CampaignApiController {
 	@PostMapping(value = "/save")
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "saveCampaign", notes = "save campaign")
-	public SaveResponse saveCampaign(@RequestBody CampaignDTORequest request) {
+	public SaveResponse saveCampaign(@RequestBody @NotNull CampaignDTORequest request) {
 		return new SaveResponse(campaignService.createCampaign(request.getCampaignDTO()));
 	}
 	

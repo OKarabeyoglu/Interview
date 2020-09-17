@@ -39,7 +39,7 @@ public class ProductApiController {
 	@PostMapping(value = "/save")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "saveProduct", notes = "save product")
-    public SaveResponse saveProduct(@RequestBody ProductDTORequest request) {
+    public SaveResponse saveProduct(@RequestBody @NotNull ProductDTORequest request) {
         return new SaveResponse(productService.createProduct(request.getProductDTO()));
     }
 	
