@@ -75,7 +75,7 @@ Now, user, campaign, category, product and coupon tables are created with data. 
 
 **1- addProductToCart (productId:2, quantity:4)**
 
-productId: 1 refers to Skinny Jeans on Product table, with price 100 TL. Skinny Jeans is related to Jeans subcategory.(Jeans sub category related to Clothes category(parent)). Jeans sub category has a campaign (mininum quantity: 3 %10 discount rate).
+productId: 2 refers to Skinny Jeans on Product table, with price 100 TL. Skinny Jeans is related to Jeans subcategory.(Jeans sub category related to Clothes category(parent)). Jeans sub category has a campaign (mininum quantity: 3 %10 discount rate).
 
 **2- addProductToCart (productId:4, quantity:1)**
 
@@ -87,7 +87,7 @@ Coupons are defined in the system. System calculates most profitable coupons and
 
 ```
 ------ SHOPPING CART ------
-Product: Skinny Jeans                Qty: 4  Price: 400.00 TL  Discounted Price: 360.00 TL
+Product: Skinny Jeans        Qty: 4  Price: 400.00 TL  Discounted Price: 360.00 TL
 Product: Wireless Headphone  Qty: 1  Price: 800.00 TL
 Coupon Discount Amount: -232.00 TL
 Delivery Cost: 0 TL
@@ -119,7 +119,7 @@ Total Price: 108.99 TL
 
 Empty service removes all items from the cart and breaks relationships.
 
-Complete service; It is assumed that the payment transaction has been made in the complete service and it completes the customer's active cart process.
+Complete service; It is assumed that the payment transaction has been made in the complete service and it completes the user's active cart process.
 
 
 
