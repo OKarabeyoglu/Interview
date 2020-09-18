@@ -59,7 +59,7 @@ lines removed from build.gradle.
 
 
 
-**ER Diagram**
+**ER Diagram:**
 
 ![ERDiagram](/.github/ER_Diagram.jpg)
 
@@ -97,7 +97,7 @@ Total Price: 928.00 TL
 
 **4- removeProductFromCart (cartItemId:3)**
 
-cartItemId:3 refers to added product Wiress Headphone to Shopping Cart. With this service, added product in the cart is removed.
+cartItemId:3 refers to added product Wireless Headphone to Shopping Cart. With this service, added product in the cart is removed.
 
 **5- updateProductQuantityOnCart(cartItemId:2, quantity:1)**
 
@@ -117,9 +117,9 @@ Total Price: 108.99 TL
 
 **7- complete or empty**
 
-Empty service removes all items from the cart and breaks relationships.
+Empty service find session user and removes all items from the cart and breaks relationships.
 
-Complete service; It is assumed that the payment transaction has been made in the complete service and it completes the user's active cart process.
+Complete service; It is assumed that the payment transaction has been made in the complete service and find session user then it completes the user's active cart process.
 
 
 
